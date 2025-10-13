@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    {% include "layouts/navegacion.html" %}
+    <div class="container">
+      <main class="main-content">
+        <section id="gym-training" class="featured-section scrolling-section">
+          <h2>Entrenamientos Programados (En Gimnasio)</h2>
+          <div class="restaurant-list horizontal-scroll">
+            <a href="#" class="card">
+              <i class="fas fa-dumbbell fa-2x"></i>
+              <h3>Explora rutinas diseñadas para gimnasio</h3>
+            </a>
+          </div>
+        </section>
+
+        <section id="home-training" class="featured-section scrolling-section">
+          <h2>Entrenamientos Programados (En Casa)</h2>
+          <div class="restaurant-list horizontal-scroll">
+            <a href="./entrenamientos_casa.html" class="card">
+              <i class="fas fa-home fa-2x"></i>
+              <h3>Explora rutinas para hacer en casa</h3>
+            </a>
+          </div>
+        </section>
+
+        <section id="create-routine" class="featured-section scrolling-section">
+          <h2>Crear Rutina</h2>
+          <div class="restaurant-list horizontal-scroll">
+            <a href="./crear_rutina.html" class="card">
+              <i class="fas fa-plus-circle fa-2x"></i>
+              <h3>Diseña un entrenamiento personalizado</h3>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar">
+        <section id="routineSection">
+          <h2>Rutina de hoy</h2>
+        </section>
+
+        <section id="accionesSection">
+          <h3>Acciones</h3>
+          <button id="btnBorrarTodasRutinas" class="btn-borrar-rutinas">
+            <i class="fas fa-trash"></i> Borrar TODAS las Rutinas Programadas
+          </button>
+        </section>
+
+        <section id="calendarSection" class="calendar-section">
+          <h2>Calendario</h2>
+          <div id="calendar"></div>
+        </section>
+      </aside>
+    </div>
+
+    {% include "layouts/footer.html" %}
+
+    <script src="{% static 'js/calendario.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,5092 @@
+input[type="text"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+button,
+#mrForm button,
+.registro-medidas-form button {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+#mrForm button:hover,
+.registro-medidas-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.main-area {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px;
+  gap: 20px;
+}
+
+.main-content {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scrolling-section,
+.calculator-form,
+.medidas-comparacion,
+.sidebar {
+  background-color: var(--color-card);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.horizontal-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+}
+
+.horizontal-scroll .restaurant-card {
+  flex: 0 0 auto;
+  width: 300px;
+}
+
+.sidebar {
+  flex-basis: 300px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.sidebar h2 {
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.featured-section,
+.cuisines-section,
+.recently-viewed-section,
+.popular-locations-section,
+.top-rated-section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .featured-section,
+.sidebar .cuisines-section {
+  display: none;
+}
+
+.map-section,
+.promotions-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+  min-height: 200px;
+  background-color: #eee;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+}
+
+.promotions-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.promotions-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.promotions-list li:last-child {
+  border-bottom: none;
+}
+
+h2 {
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.restaurant-card img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.restaurant-info {
+  padding: 15px;
+}
+
+.cuisine-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cuisine-item {
+  background-color: #f9f9f9;
+  color: #333;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cuisine-item:hover {
+  background-color: #eee;
+}
+
+.restaurant-list {
+  list-style: none;
+  padding: 0;
+}
+
+.restaurant-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.restaurant-list li:last-child {
+  border-bottom: none;
+}
+
+.restaurant-list img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.location-list {
+  list-style: none;
+  padding: 0;
+}
+
+.location-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.location-list li:last-child {
+  border-bottom: none;
+}
+
+.location-list li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.location-list li a:hover {
+  color: #ff6b6b;
+}
+
+/* Estilos del footer */
+
+.main-footer {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 2rem 0;
+  margin-top: auto;
+  box-shadow: var(--shadow-md);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.footer-links a:hover {
+  opacity: 0.8;
+}
+
+.footer-copyright {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* Estilos calculadora */
+.calculator-flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.calculator-form {
+  flex: 1 1 320px;
+  max-width: 400px;
+  background: var(--color-card);
+  padding: 24px 16px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.calculator-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--color-text);
+}
+
+#mrForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#mrForm label {
+  margin-bottom: 2px;
+  color: var(--color-text);
+}
+
+#mrForm input,
+#mrForm select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+#mrForm button {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+#mrForm button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.resultado {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.calculator-info {
+  flex: 1 1 260px;
+  max-width: 350px;
+  background: #f8f8f8;
+  padding: 24px 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.calculator-info h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+/* Estilos Registro de medidas */
+.body-measure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+  gap: 24px;
+}
+.body-figure-area {
+  position: relative;
+  width: 320px;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+.body-figure-area img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.measure-field {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+/* Ubicación de los campos alrededor de la figura */
+
+/* Cuello (arriba, flecha hacia abajo) */
+.field-cuello {
+  top: 70px;
+  left: -50px;
+  transform: none;
+}
+.field-cuello::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  height: 2px;
+  background: #888;
+}
+.field-cuello::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 90px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Pecho (flecha diagonal hacia abajo al centro) */
+.field-pecho {
+  top: 0px;
+  left: 100%;
+  transform: translate(-50%, 0);
+}
+.field-pecho::before {
+  content: "";
+  position: absolute;
+  left: -20%;
+  bottom: -84px;
+  width: 170px; /* Largo de la línea */
+  height: 2px;
+  background: #888;
+  transform: translateX(-40%) rotate(-30deg);
+  transform-origin: left bottom;
+}
+.field-pecho::after {
+  content: "";
+  position: absolute;
+  left: calc(50% + -145px);
+  bottom: -90px;
+  transform: translateX(-50%) rotate(-30deg);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Brazo izquierdo */
+.field-brazo {
+  top: 155px;
+  left: -98px;
+  transform: none;
+}
+.field-brazo::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 75px;
+  height: 2px;
+  background: #888;
+}
+.field-brazo::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 75px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Brazo derecho */
+.field-brazo-der {
+  top: 155px;
+  right: -125px;
+  transform: none;
+}
+.field-brazo-der::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 75px;
+  height: 2px;
+  background: #888;
+}
+.field-brazo-der::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 75px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Antebrazo izquierdo */
+.field-antebrazo {
+  top: 214px;
+  left: -110px;
+  transform: none;
+}
+.field-antebrazo::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 57px;
+  height: 2px;
+  background: #888;
+}
+.field-antebrazo::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 57px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Antebrazo derecho */
+.field-antebrazo-der {
+  top: 214px;
+  right: -140px;
+  transform: none;
+}
+.field-antebrazo-der::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 57px;
+  height: 2px;
+  background: #888;
+}
+.field-antebrazo-der::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 57px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Cintura (abajo, flecha hacia arriba) */
+.field-cintura {
+  top: 270px;
+  left: 100%;
+  transform: none;
+}
+.field-cintura::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 2px;
+  background: #888;
+}
+.field-cintura::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 80px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Pierna izquierda */
+.field-pierna-izq {
+  bottom: 220px;
+  left: -60px;
+  transform: none;
+}
+.field-pierna-izq::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 2px;
+  background: #888;
+}
+.field-pierna-izq::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 60px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Pierna derecha */
+.field-pierna-der {
+  bottom: 220px;
+  left: 300px;
+  transform: none;
+}
+.field-pierna-der::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 2px;
+  background: #888;
+}
+.field-pierna-der::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 60px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Gemelo izquierdo */
+.field-gemelos-izq {
+  bottom: 100px;
+  left: -33px;
+  transform: none;
+}
+.field-gemelos-izq::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 2px;
+  background: #888;
+}
+.field-gemelos-izq::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Gemelo derecho */
+.field-gemelos {
+  bottom: 100px;
+  right: -60px;
+  transform: none;
+}
+.field-gemelos::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 2px;
+  background: #888;
+}
+.field-gemelos::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* responsive para registro de medidas */
+@media (max-width: 1024px) {
+  .medidas-flex {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* <-- agrega esto */
+  }
+  .medidas-comparacion,
+  .medidas-formulario {
+    max-width: 500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.registro-medidas-form {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.registro-medidas-form button {
+  padding: 8px 20px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.registro-medidas-form label {
+  font-size: 0.95em;
+  margin-bottom: 2px;
+}
+.registro-medidas-form input {
+  width: 70px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+.medidas-resultado {
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* --- MEDIA QUERIES RESPONSIVAS COMBINADAS --- */
+@media (max-width: 768px) {
+  .main-area {
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 20px;
+  }
+  .sidebar {
+    width: 100%;
+    margin-top: 20px;
+    position: left;
+    padding: 0px;
+    margin-right: 0px;
+  }
+  .main-header {
+    padding: 10px;
+  }
+  .header-top {
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-actions {
+    position: static;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  .user-actions a {
+    margin-left: 0;
+    margin-bottom: 5px;
+    font-size: 1em;
+  }
+  .logo {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+  .search-container {
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: stretch;
+    display: flex;
+  }
+  input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    flex-grow: 1;
+    margin-right: 0;
+    font-size: 1em;
+  }
+  button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    flex-shrink: 0;
+  }
+  .main-nav {
+    padding: 10px;
+    border-radius: 0;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+  }
+  .main-nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+  .main-nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    background-color: transparent;
+    color: #333;
+    font-size: 1em;
+  }
+  .main-nav ul li a:hover {
+    background-color: var(--color-secondary);
+    color: #ff6b6b;
+  }
+  .horizontal-scroll {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .horizontal-scroll .restaurant-card {
+    width: 200px;
+  }
+  .map-section,
+  .promotions-section,
+  .quick-filters-section,
+  .sort-by-section,
+  .featured-section,
+  .cuisines-section,
+  .recently-viewed-section,
+  .popular-locations-section,
+  .top-rated-section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  h2,
+  .sidebar h2 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+  .restaurant-list li {
+    font-size: 0.9em;
+    padding: 8px 0;
+    gap: 8px;
+  }
+  .restaurant-list img {
+    width: 30px;
+    height: 30px;
+  }
+  .cuisine-list {
+    justify-content: flex-start;
+  }
+  .cuisine-item {
+    font-size: 0.85em;
+    padding: 6px 10px;
+  }
+  .map-container {
+    min-height: 150px;
+  }
+  .promotions-list li {
+    font-size: 0.9em;
+    padding: 8px 0;
+  }
+  /* Calculadora responsive */
+  .calculator-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .calculator-info,
+  .calculator-form {
+    max-width: 95vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .calculator-info {
+    margin-bottom: 0;
+    margin-top: 16px;
+  }
+}
+
+/* Notificacion de registro de medidas */
+.notificacion-exito {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-primary);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  box-shadow: var(--shadow-md);
+  z-index: 9999;
+  animation: fadeInOut 2.5s;
+  text-align: center;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* division para que se vea en 2 columnas en pc*/
+@media (max-width: 1024px) {
+  .medidas-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+  .medidas-comparacion {
+    max-width: 100%;
+    margin-top: 24px;
+  }
+  .medidas-formulario {
+    max-width: 100%;
+  }
+}
+
+.medidas-flex {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.medidas-formulario {
+  flex: 1 1 350px;
+  max-width: 500px;
+}
+.medidas-comparacion {
+  flex: 1 1 300px;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 2px 8px #0001;
+  margin-left: 4rem;
+  margin-top: 10rem;
+}
+
+/* Estilos Calculadora RM */
+.calculator-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.calculator-form {
+  flex: 1;
+  min-width: 320px;
+  max-width: 500px;
+  background: var(--color-card);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.calculator-form h2 {
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+  outline: none;
+}
+
+#resultado {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--color-secondary);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.rm-value {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 1rem 0;
+}
+
+.formula-used {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.info-section {
+  flex: 1;
+  min-width: 320px;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.formula-list {
+  list-style: none;
+  padding: 0;
+}
+
+.formula-list li {
+  background: var(--color-card);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.formula-list strong {
+  color: var(--color-primary);
+}
+
+.info-note {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  opacity: 0.8;
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .calculator-flex {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .calculator-form,
+  .info-section {
+    padding: 1.5rem;
+  }
+
+  .rm-value {
+    font-size: 2rem;
+  }
+}
+.rm-table-container {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  background: var(--color-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.rm-table-container h3 {
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.rm-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  margin-top: 0.5rem;
+}
+
+.rm-table th,
+.rm-table td {
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.rm-table th {
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.rm-table td {
+  background: white;
+  border: 1px solid var(--color-border);
+  font-size: 1.1rem; /* Texto más grande */
+}
+
+.rm-table tr:hover td {
+  background: var(--color-secondary);
+  transform: scale(1.02); /* Efecto hover sutil */
+  transition: all 0.3s ease;
+}
+
+.rm-table tr:hover {
+  background: var(--color-secondary);
+}
+
+.current-reps {
+  background: var(--color-primary);
+  color: white;
+}
+
+.current-reps td {
+  background: var(--gradient-primary) !important;
+  color: white;
+  font-weight: 600;
+}
+
+.current-reps:hover {
+  background: var(--color-primary) !important;
+}
+
+@media (max-width: 768px) {
+  .rm-table th,
+  .rm-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+.warning-text {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--color-secondary);
+  border-left: 4px solid var(--color-accent);
+  color: var(--color-text);
+  font-size: 1rem; /* Aumentado de 0.9rem */
+  border-radius: 4px;
+  line-height: 1.5; /* Aumentado de 1.4 */
+  font-weight: 500; /* Añadido para más énfasis */
+}
+
+.warning-text::before {
+  content: "⚠️";
+  margin-right: 0.5rem;
+  font-size: 1.2rem; /* Emoji más grande */
+}
+
+@media (max-width: 768px) and (min-width: 513px) {
+  .main-nav {
+    width: 100%;
+    padding: 1rem;
+    background: var(
+      --gradient-header
+    ); /* Mantiene el mismo fondo que el exterior */
+    margin: 0;
+  }
+
+  .main-nav ul {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-nav ul li a {
+    width: 90%;
+    padding: 0.75rem 0;
+    text-align: center;
+    background: var(--color-card);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .main-nav ul li a:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+}
+/* Ajustes unificados para móviles */
+@media (max-width: 512px) {
+  /* Contenedor principal y body */
+  body,
+  .container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Header y navegación */
+  .main-header {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .header-top {
+    width: 100%;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .user-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Navegación */
+  .main-nav {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    background: var(--gradient-header);
+  }
+
+  .main-nav ul {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-nav ul li a {
+    width: 90%;
+    padding: 0.75rem 0;
+    text-align: center;
+    background: var(--color-card);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Contenido principal y formularios */
+  main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .calculator-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .calculator-form {
+    width: 90%;
+    min-width: auto;
+    max-width: 90%;
+    padding: 1.5rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-group {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-group label {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+  button {
+    width: 100%;
+    max-width: 90%;
+  }
+  /* Inputs y selects */
+  select,
+  input[type="number"],
+  input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: white;
+    --webkit-appearance: none;
+    box-sizing: border-box;
+  }
+
+  /* Registro de medidas */
+  .registro-medidas-form input {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    box-sizing: border-box;
+  }
+
+  .registro-medidas-form label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Tabla RM */
+  .rm-table {
+    font-size: 0.9rem;
+    border-spacing: 0 2px;
+  }
+
+  .rm-table th,
+  .rm-table td {
+    padding: 0.5rem 0.25rem;
+  }
+
+  /* Textos y advertencias */
+  h1,
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .warning-text {
+    width: 95%;
+    margin: 1rem auto;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  /* Campos de medida */
+  .measure-field {
+    position: static !important;
+    margin: 6px 0;
+    transform: none !important;
+  }
+
+  .measure-field::before,
+  .measure-field::after {
+    display: none !important;
+  }
+  /* Footer */
+  .main-footer {
+    width: 100%;
+    background: var(--gradient-primary);
+    padding: 1.5rem 1rem;
+    margin-top: auto;
+  }
+
+  .footer-content {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .footer-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  .footer-copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.9rem;
+  }
+}
+/* estilos de entrenamiento en gimnasio*/
+.hidden {
+  display: none;
+}
+
+.routine-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+}
+
+.training-filters {
+  margin-bottom: 2rem;
+}
+
+.training-filters select {
+  padding: 0.75rem;
+  margin: 0.5rem;
+  min-width: 200px;
+}
+.training-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.training-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.routine-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-light);
+}
+
+.workouts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.workout-columns {
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.workout-columns {
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.day-tab {
+  background: var(--color-background-light);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.day-tab h4 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exercise-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.exercise-list li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 1200px) {
+  .workout-columns.three-columns,
+  .workout-columns.ppl-grid .ppl-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .workout-columns.three-columns,
+  .workout-columns.two-columns,
+  .workout-columns.ppl-grid .ppl-row {
+    grid-template-columns: 1fr;
+  }
+}
+.workout-columns.three-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.workout-columns.two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.workout-columns.ppl-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ppl-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.training-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.training-content h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem; /* Aumentar el tamaño para que coincida con las otras páginas */
+  font-weight: 600;
+  color: var(--color-text);
+  padding: 1rem 0;
+}
+
+.workout-card h3 {
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.workout-card {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.routine-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--color-secondary);
+  border-radius: 8px;
+}
+
+.routine-info p {
+  margin: 0.5rem 0;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Estilos para el layout de columnas */
+.main-area {
+  display: grid;
+  grid-template-columns: 1fr 600px; /* Columna principal y sidebar */
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  flex-basis: 300px;
+  background-color: var(--color-card);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+/* Media queries para el layout */
+@media (max-width: 1024px) {
+  .main-area {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Estilos para las cards/secciones */
+.featured-section {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.featured-section h2 {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-background);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card i {
+  color: var(--color-primary);
+}
+/* Estilos específicos del calendario */
+.calendar-section {
+  background: var(--color-card);
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  padding-top: 1rem;
+}
+
+#calendar {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.month-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  background: white;
+  border-radius: 4px;
+  min-width: 120px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+.calendar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-nav button {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  min-width: 40px;
+  text-align: center;
+}
+
+.today-button {
+  margin: 0.5rem 0 1rem 0;
+}
+.nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px; /* Ancho fijo para mantener el espacio consistente */
+  margin: 0 auto;
+}
+
+/* Eliminar estilos que ya no necesitamos */
+.calendar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.workout-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1000px;
+  box-shadow: var(--shadow-sm);
+}
+
+.workout-card h3 {
+  color: var(--color-primary);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.routine-info {
+  background: #f0f7ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.workout-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.day-tab {
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.day-tab h4 {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+.exercise-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e3f2fd;
+  color: var(--color-text);
+}
+
+.exercise-list li:last-child {
+  border-bottom: none;
+}
+
+.btn-comenzar {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px; /* Ancho fijo para mantener el espacio consistente */
+  margin: 0 auto;
+}
+
+.calendar-nav button {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+}
+
+.month-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  min-width: 150px; /* Ancho fijo para el título */
+}
+
+.today-button {
+  margin: 0.5rem 0 1rem 0;
+  width: auto !important; /* Sobreescribir el ancho fijo de los botones */
+}
+
+/* Eliminar estilos que ya no necesitamos */
+.calendar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilos crear rutina */
+.create-routine-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: var(--shadow-sm);
+}
+
+.routine-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.exercise-form {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row:last-child {
+  grid-template-columns: 1fr 1fr 2fr;
+  margin-bottom: 0;
+}
+
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.day-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.day-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+}
+
+.exercise-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.create-button {
+  display: block;
+  width: 200px;
+  margin: 2rem auto 0;
+}
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.day-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.day-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+}
+
+.exercise-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.exercise-list li:last-child {
+  border-bottom: none;
+}
+.muscle-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-right: 8px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.muscle-tag.pecho {
+  background-color: #ff4757;
+}
+.muscle-tag.espalda {
+  background-color: #2ed573;
+}
+.muscle-tag.piernas {
+  background-color: #1e90ff;
+}
+.muscle-tag.hombros {
+  background-color: #ffa502;
+}
+.muscle-tag.biceps {
+  background-color: #7bed9f;
+}
+.muscle-tag.triceps {
+  background-color: #70a1ff;
+}
+.muscle-tag.core {
+  background-color: #5352ed;
+}
+.muscle-tag.cardio {
+  background-color: #ff6b81;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+/* menu desplegable de rutinas */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+/* Mostrar menú solo al hacer hover */
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Estilo del botón toggle */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    width: 100%;
+    display: none;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+}
+.main-nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.main-nav .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Solo mostrar en hover en desktop */
+@media (min-width: 769px) {
+  .main-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Ajustes específicos para móvil */
+@media (max-width: 768px) {
+  .main-nav .dropdown > a {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--color-card);
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+
+  .main-nav .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .main-nav .dropdown-menu a {
+    background: var(--color-background);
+    margin: 0.25rem 0;
+  }
+
+  /* Solo mostrar menú cuando tiene la clase .show */
+  .main-nav .dropdown-menu.show {
+    display: block;
+  }
+}
+.main-nav .dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 1em;
+  background: transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: auto;
+  margin: 0;
+  height: 100%;
+}
+
+.main-nav .dropdown > a:hover {
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+}
+
+.main-nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: var(--shadow-sm);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+/* Mostrar menú en hover solo en desktop */
+@media (min-width: 769px) {
+  .main-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+/* Mostrar menú en hover solo en desktop */
+@media (min-width: 769px) {
+  .main-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Estilos unificados para todos los botones de navegación */
+.main-nav ul li a,
+.main-nav .dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 1em;
+  background: transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: auto;
+  margin: 0;
+  height: auto; /* Cambio de 100% a auto */
+  min-height: auto; /* Cambio de 40px a auto */
+}
+
+.main-nav ul li a:hover,
+.main-nav .dropdown > a:hover {
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+}
+
+/* Estilos del menú dropdown */
+.main-nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: var(--shadow-sm);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.main-nav .dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.main-nav .dropdown-menu a:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.main-nav .dropdown-menu a:last-child {
+  border-bottom: none;
+}
+/* Mostrar menú en hover solo en desktop */
+@media (min-width: 769px) {
+  .main-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Arreglo específico para móviles - mantener el estilo original */
+@media (max-width: 768px) {
+  .main-nav ul li a,
+  .main-nav .dropdown > a {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(#f0f7ff);
+    border-radius: 8px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .main-nav .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .main-nav .dropdown-menu a {
+    background: var(#f0f7ff);
+    margin: 0.25rem 0;
+    width: 100%;
+  }
+
+  /* Solo mostrar menú cuando tiene la clase .show */
+  .main-nav .dropdown-menu.show {
+    display: block;
+  }
+}
+/* Estilos específicos para Mis Rutinas */
+/* Estilos específicos para Mis Rutinas */
+.my-routines-container {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.routines-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 250px;
+  margin-right: 1rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+  outline: none;
+}
+
+.filter-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-options select {
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  min-width: 150px;
+  font-size: 1rem;
+  background: white;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-options select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+  outline: none;
+}
+
+.filter-options select:hover {
+  border-color: var(--color-primary);
+}
+
+.routines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.routine-card {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.routine-card:hover {
+  transform: translateY(-2px);
+}
+
+.routine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.routine-title {
+  color: var(--color-primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.routine-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: var(--color-secondary);
+}
+
+.action-btn.favorite.active {
+  color: var(--color-accent);
+}
+
+.routine-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.preview-days {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.day-badge {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.routine-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-view {
+  flex: 1;
+  padding: 0.75rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Mensaje sin rutinas */
+.no-routines-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  width: 100%;
+}
+
+.no-routines-message i {
+  font-size: 4rem;
+  color: var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.no-routines-message h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.no-routines-message p {
+  margin-bottom: 2rem;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.btn-create-first {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-create-first:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  color: white;
+}
+
+.routines-page .sidebar {
+  display: none;
+}
+
+.routines-page.has-routines .sidebar {
+  display: block;
+}
+
+/* En otras páginas, mostrar sidebar normalmente */
+body:not(.routines-page) .sidebar {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .my-routines-container {
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .routines-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    min-width: auto;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .filter-options {
+    flex-direction: column;
+  }
+
+  .filter-options select {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .routines-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .routine-buttons {
+    flex-direction: column;
+  }
+
+  .no-routines-message {
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+  }
+
+  .no-routines-message i {
+    font-size: 3rem;
+  }
+
+  .no-routines-message h3 {
+    font-size: 1.5rem;
+  }
+
+  .no-routines-message p {
+    font-size: 1rem;
+  }
+
+  .btn-create-first {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+/* Reemplazar los estilos de login por estos: */
+
+/* Estilos para la página de login */
+.login-page {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0066cc 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px; /* Reducir ancho máximo */
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.login-card {
+  width: 100%;
+  background: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* Ocultar completamente el background lateral */
+.login-background {
+  display: none;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-logo {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.login-logo i {
+  font-size: 2rem;
+}
+
+.login-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.login-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.input-group i {
+  position: absolute;
+  left: 1rem;
+  color: var(--color-text-secondary);
+  z-index: 1;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem 3.5rem 1rem 3rem; /* Aumentar padding derecho de 3rem a 3.5rem */
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  height: auto;
+  line-height: normal;
+}
+
+.input-group input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+  outline: none;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none !important;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  box-shadow: none !important;
+  /* Eliminar cualquier estado inicial */
+  transition: none !important;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.checkbox-container input {
+  margin-right: 0.5rem;
+}
+
+.forgot-password {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+}
+
+.login-divider {
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.login-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.login-divider span {
+  background: white;
+  color: var(--color-text-secondary);
+  padding: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.btn-social {
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  background: white;
+  color: var(--color-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-social:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn-google:hover {
+  background: #f8f9fa;
+}
+
+.btn-facebook:hover {
+  background: #1877f2;
+  color: white;
+}
+
+.login-footer {
+  text-align: center;
+}
+
+.login-footer p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.signup-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+    border-radius: 12px;
+  }
+
+  .login-container {
+    width: 95%;
+  }
+}
+
+.toggle-password:hover,
+.toggle-password:focus,
+.toggle-password:active,
+.toggle-password:visited {
+  color: var(--color-text-secondary) !important;
+  background: none !important;
+  transform: translateY(-50%) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Eliminar estados del navegador */
+.toggle-password::-moz-focus-inner {
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+/* Estilos para el registro de peso */
+.peso-section {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.peso-section h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+}
+
+.peso-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.peso-input-group label {
+  font-weight: 500;
+  color: var(--color-text);
+  min-width: 80px;
+}
+
+.peso-input-group input {
+  width: 100px;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.peso-input-group input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+  outline: none;
+}
+
+.peso-input-group span {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.btn-registro-peso {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.btn-registro-peso:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tabla de comparación de peso */
+.peso-comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  margin-top: 1rem;
+}
+
+.peso-comparison-table th {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.peso-comparison-table th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.peso-comparison-table th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.peso-comparison-table td {
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.peso-comparison-table tr:hover td {
+  background: var(--color-secondary);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Estilo para el cambio de peso */
+.peso-change {
+  font-weight: 600;
+}
+
+.peso-change.positive {
+  color: #2ed573; /* Verde para aumento */
+}
+
+.peso-change.negative {
+  color: #ff4757; /* Rojo para disminución */
+}
+
+.peso-change.neutral {
+  color: var(--color-text);
+}
+
+/* Responsive para el registro de peso */
+@media (max-width: 768px) {
+  .peso-input-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .peso-input-group label {
+    min-width: auto;
+    text-align: center;
+  }
+
+  .peso-comparison-table th,
+  .peso-comparison-table td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .peso-section {
+    margin: 1rem 0;
+  }
+}
+/* Estilos para la página de registro de peso */
+.peso-page-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.peso-registro-panel,
+.peso-historial-panel {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.peso-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: var(--color-secondary);
+  border-radius: 8px;
+}
+
+.stat-item h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.stat-item span {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.peso-filtros {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-filtro {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-border);
+  background: white;
+  color: var(--color-text);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-filtro:hover,
+.btn-filtro.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.peso-table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.btn-eliminar {
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background: #ff3838;
+  transform: scale(1.1);
+}
+
+.peso-progreso-visual {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin-top: 2rem;
+}
+
+.progreso-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  background: var(--color-secondary);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+}
+
+/* Responsive para página de peso */
+@media (max-width: 768px) {
+  .peso-page-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .peso-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .peso-filtros {
+    flex-wrap: wrap;
+  }
+
+  .peso-table-container {
+    max-height: 300px;
+  }
+}
+
+/* Estilos para el calendario interactivo */
+.dia-con-rutina {
+  background-color: rgba(0, 180, 216, 0.1) !important;
+  border: 2px solid var(--color-primary) !important;
+}
+
+.dia-con-rutina:hover {
+  background-color: rgba(0, 180, 216, 0.2) !important;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.dia-sin-rutina:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s ease;
+}
+
+/* Estilos para la rutina de hoy */
+.rutina-hoy {
+  margin-top: 1rem;
+}
+
+.rutina-card {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.rutina-card.gimnasio {
+  border-left-color: var(--color-primary);
+}
+
+.rutina-card.casa {
+  border-left-color: #ff6b6b;
+}
+
+.rutina-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.rutina-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.rutina-header i {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+.rutina-header h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.rutina-tipo {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.btn-ver-rutina,
+.btn-crear-rutina {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-ver-rutina:hover,
+.btn-crear-rutina:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.no-rutina {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--color-text-secondary);
+}
+
+.no-rutina i {
+  font-size: 2rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.no-rutina p {
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* Estilos para eventos del calendario */
+.fc-event {
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+}
+
+.fc-event:hover {
+  opacity: 0.8 !important;
+  transform: scale(1.02) !important;
+  transition: all 0.2s ease !important;
+}
+
+.fc-daygrid-day:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Responsive para calendario */
+@media (max-width: 768px) {
+  .rutina-card {
+    padding: 1rem;
+  }
+
+  .rutina-header h3 {
+    font-size: 1rem;
+  }
+
+  .btn-ver-rutina,
+  .btn-crear-rutina {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+/* Estilos para la página ver rutina */
+.rutina-detalle-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.rutina-header-section {
+  margin-bottom: 2rem;
+}
+
+.btn-volver {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.btn-volver:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.rutina-header-info h1 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rutina-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.rutina-meta span {
+  background: var(--color-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--color-text);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rutina-ejercicios h2 {
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  border-bottom: 3px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+}
+
+.ejercicios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ejercicio-card {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.ejercicio-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.ejercicio-numero {
+  background: var(--gradient-primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.ejercicio-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.ejercicio-detalles {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.ejercicio-detalles span {
+  background: var(--color-secondary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.ejercicio-detalles i {
+  color: var(--color-primary);
+}
+
+.ejercicio-check {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ejercicio-check input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.ejercicio-check label {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: center;
+}
+
+.error-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-text);
+}
+
+.error-message h2 {
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+/* Responsive para ver rutina */
+@media (max-width: 768px) {
+  .rutina-detalle-container {
+    padding: 1rem;
+  }
+
+  .rutina-header-info h1 {
+    font-size: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .rutina-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rutina-ejercicios h2 {
+    font-size: 1.5rem;
+  }
+
+  .ejercicio-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .ejercicio-numero {
+    margin: 0 auto;
+  }
+
+  .ejercicio-detalles {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .ejercicio-detalles span {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+  }
+}
+
+/* Mejorar el calendario - arreglar colores de días con rutina */
+.fc-daygrid-day.dia-con-rutina {
+  background: rgba(0, 180, 216, 0.1) !important;
+  border: 2px solid var(--color-primary) !important;
+}
+
+.fc-daygrid-day.dia-con-rutina:hover {
+  background: rgba(0, 180, 216, 0.2) !important;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.fc-daygrid-day.dia-sin-rutina:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s ease;
+}
+
+/* Mejorar el diseño de notificaciones */
+.notificacion-exito {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  z-index: 10000;
+  animation: slideInRight 0.3s ease, slideOutRight 0.3s ease 2.2s;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+/* Igualar el tamaño de los elementos en rutina-meta */
+.rutina-meta span {
+  background: var(--color-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--color-text);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem; /* Mismo tamaño de fuente */
+  min-width: 120px; /* Ancho mínimo igual */
+  justify-content: center; /* Centrar contenido */
+}
+
+.rutina-meta {
+  display: flex;
+  gap: 1rem; /* Reducir gap para que se vean más cerca */
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Asegurar que los iconos tengan el mismo tamaño */
+.rutina-meta span i {
+  font-size: 1rem;
+  width: 16px;
+  text-align: center;
+}
+
+/* Responsive - mantener el mismo tamaño en móviles */
+@media (max-width: 768px) {
+  .rutina-meta {
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .rutina-meta span {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    min-width: 110px;
+  }
+}
+/* Separar los elementos de rutina-meta en recuadros independientes */
+.rutina-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.rutina-meta span {
+  background: var(--color-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--color-text);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  height: 40px;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0; /* Evitar que se contraigan */
+}
+
+/* Recuadro específico para la fecha */
+.rutina-fecha {
+  min-width: 130px;
+  border: 1px solid var(--color-border);
+}
+
+/* Recuadro específico para el tipo (gimnasio/casa) - separado e independiente */
+.rutina-tipo {
+  min-width: 120px;
+  border: 1px solid var(--color-border);
+  margin-top: 1rem;
+  /* Puedes mover este elemento donde quieras */
+}
+
+/* Variante para gimnasio */
+.rutina-tipo.gimnasio {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Variante para casa */
+.rutina-tipo.casa {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+/* Asegurar que los iconos tengan el mismo tamaño */
+.rutina-meta span i {
+  font-size: 1rem;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Responsive - mantener recuadros separados en móviles */
+@media (max-width: 768px) {
+  .rutina-meta {
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .rutina-fecha {
+    min-width: 120px;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    height: 36px;
+  }
+
+  .rutina-tipo {
+    min-width: 110px;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    height: 36px;
+  }
+}
+
+/* Clases adicionales para posicionamiento manual */
+.rutina-tipo.posicion-derecha {
+  margin-left: auto; /* Empujar hacia la derecha */
+}
+
+.rutina-tipo.posicion-centro {
+  margin: 0 auto; /* Centrar */
+}
+
+.rutina-tipo.posicion-izquierda {
+  margin-right: auto; /* Mantener a la izquierda */
+}
+
+@media (max-width: 768px) {
+  .main-area {
+    flex-direction: column;
+    padding: 10px;
+    margin: 0; /* Eliminar margin-left: 20px */
+    gap: 1rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin: 0; /* Eliminar todos los márgenes laterales */
+    position: static;
+    padding: 15px;
+    background-color: var(--color-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: none; /* Eliminar border-left */
+  }
+
+  .main-header {
+    padding: 10px;
+  }
+
+  .header-top {
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-actions {
+    position: static;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+  .user-actions a {
+    margin-left: 0;
+    margin-bottom: 5px;
+    font-size: 1em;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+
+  .search-container {
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: stretch;
+    display: flex;
+  }
+
+  input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    flex-grow: 1;
+    margin-right: 0;
+    font-size: 1em;
+  }
+
+  button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    flex-shrink: 0;
+  }
+
+  .main-nav {
+    padding: 10px;
+    border-radius: 0;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    background-color: transparent;
+    color: #333;
+    font-size: 1em;
+  }
+
+  .main-nav ul li a:hover {
+    background-color: var(--color-secondary);
+    color: #ff6b6b;
+  }
+
+  /* Específico para las secciones de la sidebar */
+  .map-section,
+  .calendar-section {
+    background: var(--color-card);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Centrar el calendario en móviles */
+  #calendar {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Ajustar la navegación del calendario */
+  .calendar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-controls {
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .today-button {
+    width: auto;
+    margin: 0.5rem 0;
+  }
+
+  /* Otros elementos responsive existentes... */
+  .horizontal-scroll {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .horizontal-scroll .restaurant-card {
+    width: 200px;
+  }
+
+  .featured-section,
+  .cuisines-section,
+  .recently-viewed-section,
+  .popular-locations-section,
+  .top-rated-section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  h2,
+  .sidebar h2 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .restaurant-list li {
+    font-size: 0.9em;
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .restaurant-list img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cuisine-list {
+    justify-content: flex-start;
+  }
+
+  .cuisine-item {
+    font-size: 0.85em;
+    padding: 6px 10px;
+  }
+
+  .map-container {
+    min-height: 150px;
+  }
+
+  .promotions-list li {
+    font-size: 0.9em;
+    padding: 8px 0;
+  }
+
+  /* Calculadora responsive */
+  .calculator-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .calculator-info,
+  .calculator-form {
+    max-width: 95vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .calculator-info {
+    margin-bottom: 0;
+    margin-top: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .main-area {
+    flex-direction: column;
+    padding: 10px;
+    margin: 0 auto; /* Centrar y eliminar margin-left */
+    max-width: 95%; /* Limitar el ancho máximo */
+    gap: 1rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin: 0 auto; /* Centrar la sidebar */
+    max-width: 90%; /* Evitar que toque los bordes */
+    position: static;
+    padding: 15px;
+    background-color: var(--color-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: none;
+  }
+}
+.main-nav ul li a {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  background-color: transparent;
+  color: #333; /* ← AQUÍ está el problema */
+  font-size: 1em;
+}
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 10px;
+    border-radius: 0;
+    background: white; /* CAMBIAR - fondo blanco para la navegación */
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    background-color: #f0f7ff; /* CAMBIAR - fondo blanco */
+    color: #333; /* CAMBIAR - texto oscuro */
+    font-size: 1em;
+  }
+
+  .main-nav ul li a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+  /* Mantener el dropdown con el mismo estilo */
+  .main-nav .dropdown > a {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(#f0f7ff); /* Fondo blanco */
+    color: var(--color-text); /* Texto oscuro */
+    border-radius: 8px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-sm);
+  }
+}
+/* Responsive específico para entrenamientos en gimnasio - solo móviles */
+@media (max-width: 768px) {
+  /* Contenedor principal */
+  .training-content {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .training-content h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Filtros */
+  .training-filters {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    align-items: stretch;
+  }
+
+  .training-filters select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 2px solid var(--color-border);
+    background: white;
+    margin: 0;
+    min-width: auto;
+  }
+
+  /* Grid de rutinas */
+  .workouts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  /* Cards de rutinas */
+  .workout-card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .workout-card h3 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  /* Información de rutinas */
+  .routine-info {
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+    background: var(--color-secondary);
+    border-radius: 8px;
+  }
+
+  .routine-info p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    color: var(--color-text);
+  }
+
+  /* Columnas de rutinas - cambiar a una sola columna */
+  .workout-columns.three-columns,
+  .workout-columns.two-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .workout-columns.ppl-grid .ppl-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Tabs de días */
+  .day-tab {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  .day-tab h4 {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+    text-align: center;
+  }
+
+  /* Lista de ejercicios */
+  .exercise-list {
+    list-style: none;
+    padding: 0.75rem;
+    margin: 0;
+    background: white;
+    border-radius: 6px;
+  }
+
+  .exercise-list li {
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .exercise-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Botón comenzar */
+  .btn-comenzar {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 90%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-comenzar:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Mensaje de rutina */
+  .routine-message {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+}
+
+/* Específico para móviles muy pequeños */
+@media (max-width: 480px) {
+  .training-content {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+
+  .training-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .workout-card {
+    padding: 1rem;
+    margin: 0.75rem 0;
+  }
+
+  .workout-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .routine-info {
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+  }
+
+  .routine-info p {
+    font-size: 0.85rem;
+  }
+
+  .day-tab {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .day-tab h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .exercise-list {
+    padding: 0.5rem;
+  }
+
+  .exercise-list li {
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .btn-comenzar {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.9rem;
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 10px;
+    border-radius: 0;
+    background: white; /* Fondo blanco para la navegación */
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    background-color: var(--color-background); /* Mismo fondo que los otros */
+    color: #333;
+    font-size: 1em;
+  }
+
+  .main-nav ul li a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+  /* CAMBIAR el dropdown para que se vea igual */
+  .main-nav .dropdown > a {
+    width: 100%; /* Cambiar de 90% a 100% */
+    display: block; /* Cambiar de flex a block */
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Mismo padding que los otros botones */
+    background: var(--color-background); /* Mismo fondo que los otros */
+    color: #333; /* Mismo color de texto */
+    border-radius: 0; /* Sin border-radius como los otros */
+    margin: 0; /* Sin margin */
+    box-shadow: none; /* Sin shadow */
+    border-bottom: 1px solid #eee; /* Mismo borde que los otros */
+    text-align: center; /* Centrar texto */
+    font-size: 1em; /* Mismo tamaño de fuente */
+  }
+
+  .main-nav .dropdown > a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+  .main-nav .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    width: 100%; /* Cambiar de 90% a 100% */
+    margin: 0; /* Sin margin */
+  }
+
+  .main-nav .dropdown-menu a {
+    background: var(--color-background);
+    margin: 0; /* Sin margin */
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Solo mostrar menú cuando tiene la clase .show */
+  .main-nav .dropdown-menu.show {
+    display: block;
+  }
+}
+/* Responsive específico para entrenamientos en casa - solo móviles */
+@media (max-width: 768px) {
+  /* Contenedor principal */
+  .training-content {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .training-content h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Filtros */
+  .training-filters {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    align-items: stretch;
+  }
+
+  .training-filters select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 2px solid var(--color-border);
+    background: white;
+    margin: 0;
+    min-width: auto;
+  }
+
+  /* Grid de rutinas */
+  .workouts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  /* Cards de rutinas */
+  .workout-card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .workout-card h3 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  /* Información de rutinas */
+  .routine-info {
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+    background: var(--color-secondary);
+    border-radius: 8px;
+  }
+
+  .routine-info p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    color: var(--color-text);
+  }
+
+  /* Mensaje de rutina */
+  .routine-message {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+
+  /* Columnas de rutinas - cambiar a una sola columna */
+  .workout-columns.three-columns,
+  .workout-columns.two-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .workout-columns.ppl-grid .ppl-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Tabs de días */
+  .day-tab {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  .day-tab h4 {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+    text-align: center;
+  }
+
+  /* Lista de ejercicios */
+  .exercise-list {
+    list-style: none;
+    padding: 0.75rem;
+    margin: 0;
+    background: white;
+    border-radius: 6px;
+  }
+
+  .exercise-list li {
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .exercise-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Botón comenzar */
+  .btn-comenzar {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 90%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-comenzar:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* Específico para móviles muy pequeños */
+@media (max-width: 480px) {
+  .training-content {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+
+  .training-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .workout-card {
+    padding: 1rem;
+    margin: 0.75rem 0;
+  }
+
+  .workout-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .routine-info {
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+  }
+
+  .routine-info p {
+    font-size: 0.85rem;
+  }
+
+  .routine-message {
+    padding: 1.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .day-tab {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .day-tab h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .exercise-list {
+    padding: 0.5rem;
+  }
+
+  .exercise-list li {
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .btn-comenzar {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.9rem;
+    width: 95%;
+  }
+}
+@media (max-width: 768px) {
+  /* Forzar todas las columnas a una sola columna */
+  .workout-columns,
+  .workout-columns.three-columns,
+  .workout-columns.two-columns,
+  .workout-columns.ppl-grid,
+  .workout-columns.ppl-grid .ppl-row,
+  .ppl-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  /* Grid principal también en una columna */
+  .workouts-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 0.5rem !important;
+  }
+
+  /* Filtros en columna */
+  .training-filters {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    align-items: stretch !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .training-filters select {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Cards responsive */
+  .workout-card {
+    padding: 1rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  .day-tab {
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
+  }
+}
+@media (max-width: 768px) {
+  .create-routine-container {
+    padding: 1rem;
+    margin: 0.5rem;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .create-routine-container h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Configuración de rutina en una columna */
+  .routine-settings {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .routine-settings input,
+  .routine-settings select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 2px solid var(--color-border);
+    margin: 0;
+  }
+
+  /* Formulario de ejercicios responsive */
+  .exercise-form {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .exercise-form h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Filas del formulario en una columna */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-row input,
+  .form-row select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 2px solid var(--color-border);
+  }
+
+  /* Botón agregar ejercicio */
+  .btn-add-exercise,
+  .create-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  /* Contenedor de días en una columna */
+  .days-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .day-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+
+  .day-card h3 {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .exercise-list {
+    padding: 0.5rem;
+  }
+
+  .exercise-list li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e9ecef;
+  }
+}
+
+/* Específico para móviles muy pequeños */
+@media (max-width: 480px) {
+  .create-routine-container {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+
+  .create-routine-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .routine-settings,
+  .days-container {
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+
+  .exercise-form {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .exercise-form h3 {
+    font-size: 1rem;
+  }
+
+  .form-row {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .form-row input,
+  .form-row select {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-add-exercise,
+  .create-button {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .day-card {
+    padding: 0.75rem;
+  }
+
+  .day-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .exercise-list li {
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+  }
+}
+#resultado {
+  margin-top: 2rem;
+  padding: 0; /* Cambiar de 1.5rem a 0 */
+  background: transparent; /* Cambiar de var(--color-secondary) a transparent */
+  border-radius: 0; /* Cambiar de 8px a 0 */
+  text-align: center;
+  border: none; /* Eliminar cualquier borde */
+  box-shadow: none; /* Eliminar sombra */
+}
+
+/* Mantener el estilo del valor RM pero sin fondo */
+.rm-value {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 1rem 0;
+  background: transparent; /* Asegurar que no tenga fondo */
+  padding: 0; /* Sin padding */
+}
+
+.formula-used {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  opacity: 0.8;
+  background: transparent; /* Sin fondo */
+  padding: 0; /* Sin padding */
+}
+
+/* También para responsive */
+@media (max-width: 768px) {
+  #resultado {
+    margin-top: 1.5rem;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .rm-value {
+    font-size: 2rem;
+    background: transparent;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-area {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    margin: 0 auto !important;
+    max-width: 95% !important;
+    gap: 1rem !important;
+  }
+
+  .calculator-flex {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    margin-top: 2rem !important;
+  }
+
+  .calculator-form {
+    width: 90% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    padding: 1.5rem !important;
+  }
+}
+/* Centrar el recuadro de comparación de medidas en móviles */
+@media (max-width: 768px) {
+  .medidas-comparacion {
+    width: 85% !important; /* Reducir de 90% a 85% */
+    max-width: 380px !important; /* Reducir ligeramente el max-width */
+    margin: 1rem auto !important; /* Agregar margin top/bottom */
+    padding: 1.5rem !important;
+    background: var(--color-card) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--color-border) !important;
+    text-align: center !important;
+  }
+
+  .medidas-comparacion h3 {
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+    color: var(--color-primary) !important;
+  }
+
+  /* Centrar también el formulario de medidas */
+  .body-measure-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 1rem auto !important;
+    max-width: 95% !important;
+  }
+
+  .medidas-flex {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 1.5rem !important;
+  }
+
+  .medidas-formulario {
+    width: 85% !important; /* También reducir el formulario para consistencia */
+    max-width: 380px !important;
+    margin: 1rem auto !important; /* Agregar margin */
+  }
+}
+
+/* Para móviles muy pequeños - mantener un poco más de espacio */
+@media (max-width: 480px) {
+  .medidas-comparacion {
+    width: 90% !important; /* En móviles muy pequeños, 90% está bien */
+    padding: 1rem !important;
+    margin: 0.75rem auto !important;
+  }
+
+  .medidas-formulario {
+    width: 90% !important;
+    margin: 0.75rem auto !important;
+  }
+}
+/* Ocultar botones de login social y separador */
+.social-login {
+  display: none !important;
+}
+
+.login-divider {
+  display: none !important;
+}
+.btn-login {
+  width: 100%;
+  padding: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto; /* Centrar el botón */
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .btn-login {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 10px;
+    border-radius: 0;
+    background: white;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* TODOS los botones con el mismo estilo */
+  .main-nav ul li a,
+  .main-nav .dropdown > a {
+    display: block !important;
+    width: 90% !important;
+    padding: 10px !important;
+    text-align: center !important;
+    border-bottom: 1px solid #eee !important;
+    border-radius: 8px !important; /* Agregar border-radius como Rutinas */
+    background-color: var(
+      --color-card
+    ) !important; /* Mismo fondo que Rutinas */
+    color: #333 !important;
+    font-size: 1em !important;
+    margin: 0 auto !important; /* Centrar como Rutinas */
+    box-shadow: var(--shadow-sm) !important; /* Agregar sombra como Rutinas */
+    box-sizing: border-box !important;
+  }
+
+  .main-nav ul li a:hover,
+  .main-nav .dropdown > a:hover {
+    background-color: var(--color-secondary) !important;
+    color: var(--color-primary) !important;
+  }
+
+  /* Menú dropdown manteniendo el mismo estilo */
+  .main-nav .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .main-nav .dropdown-menu a {
+    background: var(--color-background);
+    margin: 0.25rem 0;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .main-nav .dropdown-menu.show {
+    display: block;
+  }
+}
+.main-nav ul li a,
+.main-nav .dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem; /* Padding uniforme */
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 1rem;
+  background: var(--color-card); /* Mismo fondo para todos */
+  border-radius: 8px; /* Border-radius para todos */
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-border); /* Borde sutil */
+  box-shadow: var(--shadow-sm); /* Sombra sutil para todos */
+  margin: 0 0.25rem; /* Pequeño margen entre botones */
+  min-height: 44px; /* Altura mínima uniforme */
+  box-sizing: border-box;
+}
+
+.main-nav ul li a:hover,
+.main-nav .dropdown > a:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  transform: translateY(-1px); /* Pequeño efecto hover */
+  box-shadow: var(--shadow-md); /* Sombra más pronunciada en hover */
+}
+
+/* Estilos del menú dropdown para desktop */
+.main-nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: var(--shadow-md);
+  border-radius: 8px;
+  z-index: 1000;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0;
+}
+
+.main-nav .dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: none; /* Eliminar borde inferior en dropdown */
+  background: transparent; /* Fondo transparente en dropdown */
+  box-shadow: none; /* Sin sombra en items del dropdown */
+  border-radius: 0; /* Sin border-radius en items del dropdown */
+  margin: 0; /* Sin margin en items del dropdown */
+  border: none; /* Sin borde en items del dropdown */
+  transition: background-color 0.3s ease;
+}
+
+.main-nav .dropdown-menu a:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  transform: none; /* Sin transform en items del dropdown */
+  box-shadow: none; /* Sin sombra en hover del dropdown */
+}
+
+/* Mostrar menú en hover solo en desktop */
+@media (min-width: 769px) {
+  .main-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Responsive para móviles - mantener el código existente */
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 10px;
+    border-radius: 0;
+    background: white;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* TODOS los botones con el mismo estilo en móviles */
+  .main-nav ul li a,
+  .main-nav .dropdown > a {
+    display: block !important;
+    width: 90% !important;
+    padding: 10px !important;
+    text-align: center !important;
+    border-bottom: 1px solid #eee !important;
+    border-radius: 8px !important;
+    background-color: var(--color-card) !important;
+    color: #333 !important;
+    font-size: 1em !important;
+    margin: 0 auto !important;
+    box-shadow: var(--shadow-sm) !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-nav ul li a:hover,
+  .main-nav .dropdown > a:hover {
+    background-color: var(--color-secondary) !important;
+    color: var(--color-primary) !important;
+  }
+
+  /* Menú dropdown manteniendo el mismo estilo en móviles */
+  .main-nav .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .main-nav .dropdown-menu a {
+    background: var(--color-background);
+    margin: 0.25rem 0;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .main-nav .dropdown-menu.show {
+    display: block;
+  }
+}
+.btn-borrar-rutinas {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+.btn-borrar-rutinas:hover {
+  background: #c82333;
+}

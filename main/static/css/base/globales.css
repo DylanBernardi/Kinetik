@@ -1,0 +1,40 @@
+/* Variables globales */
+:root {
+  --color-primary: #00b4d8; /* Azul eléctrico energético */
+  --color-primary-dark: #0077be; /* Azul oscuro para gradiente */
+  --color-secondary: #e3f2fd; /* Azul muy claro para fondo */
+  --color-accent: #ff6b6b; /* Coral/rojo energético para acentos */
+  --color-text: #2b2d42; /* Gris oscuro para texto */
+  --color-border: #b3e0ff; /* Azul claro para bordes */
+  --color-card: #ffffff; /* Blanco para tarjetas */
+  --color-background: #f0f7ff; /* Nuevo color de fondo base */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  --gradient-background: linear-gradient(160deg, #e3f2fd 0%, #f0f7ff 100%);
+  --gradient-header: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary) 100%
+  );
+}
+
+/* Estilos base */
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background: var(--gradient-background);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
