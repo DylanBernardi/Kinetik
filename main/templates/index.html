@@ -5,6 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio</title>
+    <link
+      rel="icon"
+      type="icon"
+      href="{% static 'imagenes/logo.png' %}"
+      class="icon"
+    />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
     <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
@@ -31,32 +37,32 @@
 
   <body>
     {% include "layouts/navegacion.html" %}
-    <div class="container">
+    <div class="contenedor">
       <main class="main-content">
-        <section id="gym-training" class="featured-section scrolling-section">
+        <section id="gym-training" class="section-div">
           <h2>Entrenamientos Programados (En Gimnasio)</h2>
-          <div class="restaurant-list horizontal-scroll">
-            <a href="#" class="card">
+          <div class="section-div__div">
+            <a href="#" class="tarjeta">
               <i class="fas fa-dumbbell fa-2x"></i>
               <h3>Explora rutinas diseñadas para gimnasio</h3>
             </a>
           </div>
         </section>
 
-        <section id="home-training" class="featured-section scrolling-section">
+        <section id="home-training" class="section-div">
           <h2>Entrenamientos Programados (En Casa)</h2>
-          <div class="restaurant-list horizontal-scroll">
-            <a href="./entrenamientos_casa.html" class="card">
+          <div class="section-div__div">
+            <a href="./entrenamientos_casa.html" class="tarjeta">
               <i class="fas fa-home fa-2x"></i>
               <h3>Explora rutinas para hacer en casa</h3>
             </a>
           </div>
         </section>
 
-        <section id="create-routine" class="featured-section scrolling-section">
+        <section id="create-routine" class="section-div">
           <h2>Crear Rutina</h2>
-          <div class="restaurant-list horizontal-scroll">
-            <a href="./crear_rutina.html" class="card">
+          <div class="section-div__div">
+            <a href="./crear_rutina.html" class="tarjeta">
               <i class="fas fa-plus-circle fa-2x"></i>
               <h3>Diseña un entrenamiento personalizado</h3>
             </a>
