@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora RM</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="header-top">
+                <div class="user-actions">
+                    <a href="#">Registrarse</a>
+                    <a href="#">Iniciar Sesión</a>
+                </div>
+                <h1 class="logo">
+                    <a href="index.html">Kinetik</a>
+                </h1>
+            </div>
+            <nav class="main-nav">
+    <ul>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle">
+                <i class="fas fa-dumbbell"></i> Rutinas <i class="fas fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="entrenamientos_gimnasio.html"><i class="fas fa-dumbbell"></i> Gimnasio</a></li>
+                <li><a href="entrenamientos_casa.html"><i class="fas fa-house-user"></i> Casa</a></li>
+                <li><a href="crear_rutina.html"><i class="fas fa-plus-circle"></i> Crear Rutina</a></li>
+                <li><a href="mis_rutinas.html"><i class="fas fa-list"></i> Mis Rutinas</a></li>
+            </ul>
+        </li>
+        <li><a href="registro_medidas.html"><i class="fas fa-ruler"></i> Medidas</a></li>
+        <li><a href="registro_peso.html"><i class="fas fa-weight"></i> Peso</a></li>
+        <li><a href="calculadora_mr.html"><i class="fas fa-calculator"></i> Calculadora de Mr</a></li>
+        <li><a href="calculadora_rm.html"><i class="fas fa-calculator"></i> Calculadora de Rm</a></li>
+    </ul>
+</nav>
+        </header>
+
+<main class="calculator-flex">
+    <form id="rmForm" class="calculator-form">
+        <h2>Calculadora de Repetición Máxima (RM)</h2>
+        
+        <div class="form-group">
+            <label for="peso">Peso utilizado (kg):</label>
+            <input type="number" id="peso" required min="0" step="0.5">
+        </div>
+
+        <div class="form-group">
+            <label for="reps">Repeticiones realizadas:</label>
+            <input type="number" id="reps" required min="1" max="15">
+        </div>
+
+        <button type="submit">Calcular RM</button>
+        <p class="warning-text">Los valores son aproximados. Siempre tome los cálculos con precaución y realice aproximaciones conservadoras, especialmente si va a realizar un RM muy bajo. Su seguridad es lo primero.</p>
+    </form>
+
+    <div class="rm-table-container">
+        <h3>Tabla de Repeticiones</h3>
+        <table id="rmTable" class="rm-table">
+            <thead>
+                <tr>
+                    <th>Repeticiones</th>
+                    <th>Peso (kg)</th>
+                    <th>% del RM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Se llenará con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+    </ul>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Fitness App. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.getElementById('rmForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const peso = parseFloat(document.getElementById('peso').value);
+    const reps = parseInt(document.getElementById('reps').value);
+    
+    // Calculamos el RM usando la fórmula de Brzycki
+    const rm = peso / (1.0278 - 0.0278 * reps);
+    
+    // Generamos la tabla de repeticiones
+    const tbody = document.querySelector('#rmTable tbody');
+    tbody.innerHTML = '';
+    
+    // Calculamos para repeticiones de 1 a 15
+    for(let i = 1; i <= 15; i++) {
+        const porcentaje = (1.0278 - 0.0278 * i) * 100;
+        const pesoRecomendado = rm * (porcentaje / 100);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${i}</td>
+            <td>${Math.round(pesoRecomendado * 2) / 2}</td>
+            <td>${Math.round(porcentaje)}%</td>
+`;
+        
+        // Resaltamos la fila que corresponde a las repeticiones ingresadas
+        if(i === reps) {
+            row.classList.add('current-reps');
+        }
+        
+        tbody.appendChild(row);
+    }
+});
+</script>
+    <script src="src/js/auth.js"></script> 
+</body>
+</html>

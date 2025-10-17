@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Metabolismo Basal</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+      rel="icon"
+      type="icon"
+      href="{% static 'imagenes/logo.png' %}"
+      class="icon"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/calculadora_mr.css' %}" />
+    <!--- TODO ADECUA AL NAMESPACING SINO HAY COLISION Y PRETTIER-->
+
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+
+    {% include "layouts/navegacion.html" %}
+
+        <main class="main-content">
+            <section class="calculator-flex">
+                <div class="calculator-form">
+                    <h2>Calculadora de Metabolismo Basal (MR)</h2>
+                    <form id="mrForm">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" id="peso" name="peso" min="1" required>
+
+                        <label for="edad">Edad (años):</label>
+                        <input type="number" id="edad" name="edad" min="1" required>
+
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo" name="sexo" required>
+                            <option value="">Seleccione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                        </select>
+
+                        <label for="actividad">Nivel de actividad física:</label>
+                        <select id="actividad" name="actividad" required>
+                            <option value="">Seleccione</option>
+                            <option value="sedentario">Sedentario (poco o ningún ejercicio)</option>
+                            <option value="ligero">Ligero (ejercicio ligero 1-3 días/semana)</option>
+                            <option value="moderado">Moderado (ejercicio moderado 3-5 días/semana)</option>
+                            <option value="intenso">Intenso (ejercicio intenso 6-7 días/semana)</option>
+                            <option value="muy_intenso">Muy intenso (entrenamientos muy duros o trabajo físico)</option>
+                        </select>
+
+                        <label for="objetivo">Objetivo:</label>
+                        <select id="objetivo" name="objetivo" required>
+                            <option value="">Seleccione</option>
+                            <option value="mantener">Mantener peso</option>
+                            <option value="bajar">Bajar peso</option>
+                            <option value="subir">Subir peso</option>
+                        </select>
+
+                        <button type="submit">Calcular</button>
+                    </form>
+                    <div id="resultado" class="resultado"></div>
+                </div>
+                <div class="calculator-info">
+                    <h3>¿Cómo funciona la calculadora?</h3>
+                    <p>
+                        Esta calculadora estima la cantidad de calorías que necesitas diariamente según tu peso, edad, sexo, nivel de actividad física y objetivo (mantener, bajar o subir de peso). Utiliza la fórmula de Harris-Benedict para calcular tu metabolismo basal y ajusta el resultado según tu actividad y objetivo. Es una herramienta orientativa para ayudarte a planificar tu alimentación y entrenamiento.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+    {% include "layouts/footer.html" %}
+
+    <script>
+    // Cálculo de MR y calorías
+document.getElementById('mrForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const peso = parseFloat(document.getElementById('peso').value);
+    const edad = parseInt(document.getElementById('edad').value);
+    const sexo = document.getElementById('sexo').value;
+    const actividad = document.getElementById('actividad').value;
+    const objetivo = document.getElementById('objetivo').value;
+
+    let mr;
+    if (sexo === 'masculino') {
+        mr = 88.36 + (13.4 * peso) + (5 * 170) - (6.8 * edad);
+    } else {
+        mr = 447.6 + (9.2 * peso) + (3.1 * 160) - (4.3 * edad);
+    }
+
+    let factor = 1.2;
+    if (actividad === 'ligero') factor = 1.375;
+    else if (actividad === 'moderado') factor = 1.55;
+    else if (actividad === 'intenso') factor = 1.725;
+    else if (actividad === 'muy_intenso') factor = 1.9;
+
+    let calorias = mr * factor;
+    if (objetivo === 'bajar') calorias -= 500;
+    else if (objetivo === 'subir') calorias += 500;
+
+    // Macronutrientes
+    const proteinasGr = Math.round(peso * 2); // 2g por kg de peso
+    const proteinasKcal = proteinasGr * 4;
+    const grasasKcal = calorias * 0.25;
+    const grasasGr = Math.round(grasasKcal / 9);
+    const carbohidratosKcal = calorias - (proteinasKcal + grasasKcal);
+    const carbohidratosGr = Math.round(carbohidratosKcal / 4);
+
+    document.getElementById('resultado').innerHTML = `
+        <h3>Resultado:</h3>
+        <p>Tu requerimiento calórico diario estimado es: <strong>${Math.round(calorias)} kcal</strong></p>
+        <p>Para <strong>${objetivo === 'mantener' ? 'mantener tu peso' : objetivo === 'bajar' ? 'bajar de peso' : 'subir de peso'}</strong>.</p>
+        <h4>Distribución de macronutrientes:</h4>
+        <ul style="list-style:none;padding:0;">
+            <li><strong>Proteínas:</strong> ${proteinasGr}g (${Math.round((proteinasKcal/calorias)*100)}%)</li>
+            <li><strong>Grasas:</strong> ${grasasGr}g (25%)</li>
+            <li><strong>Carbohidratos:</strong> ${carbohidratosGr}g (${Math.round((carbohidratosKcal/calorias)*100)}%)</li>
+        </ul>
+    `;
+});
+    </script>
+</body>
+
+</html>

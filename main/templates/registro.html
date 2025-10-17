@@ -1,47 +1,93 @@
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse - Kinetik</title>
-    <link rel="stylesheet" href="src/css/style.css"> 
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <div class="container">
-        
-        <main>
-            <form id="registerForm" class="login-card"> 
-                <h2>Crear una Cuenta</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - Kinetik</title>
+    <link
+      rel="icon"
+      type="icon"
+      href="{% static 'imagenes/logo.png' %}"
+      class="icon"
+    />
 
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" required placeholder="Tu nombre">
-                </div>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="login-page">
+    <div class="login-container">
+      <div class="login-header">
+        <h1 class="login-logo">
+          <i class="fas fa-dumbbell"></i>
+          Kinetik
+        </h1>
+        <p class="login-subtitle">Registrese en Kinetik</p>
+      </div>
 
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" required placeholder="tu@email.com">
-                </div>
+      <form class="login-form" id="loginForm">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="tu@email.com"
+            />
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label for="contrasena">Contraseña</label>
-                    <input type="password" id="contrasena" required placeholder="Crea una contraseña segura">
-                </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Tu contraseña"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Repetir contraseña</label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="passwordrepeat"
+              name="passwordrepeat"
+              required
+              placeholder="Repetir contraseña"
+            />
+          </div>
+        </div>
 
-                <button type="submit" class="btn-login">Registrarse</button>
+        <div class="form-options">
+          <a href="/login" class="forgot-password"
+            >Ya tienes una cuenta? Inicia Sesion!</a
+          >
+        </div>
 
-                <div class="login-footer">
-                    <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
-                </div>
-            </form>
-        </main>
-        
+        <button type="submit" class="btn-login">
+          <span>Registrarse</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
     </div>
-
-    <script src="src/js/register.js"></script>
-</body>
+  </body>
 </html>

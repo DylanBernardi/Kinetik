@@ -33,7 +33,7 @@ button:hover,
 
 .contenedor {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 3rem;
   gap: 3rem;
 }
