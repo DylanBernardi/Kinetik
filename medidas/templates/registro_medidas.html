@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Medidas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="icon"
+      type="icon"
+      href="{% static 'imagenes/logo.png' %}"
+      class="icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/registro_medidas.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <div class="container">
+    {% include "layouts/navegacion.html" %}
+
+    <main class="main-content">
+            <div class="medidas-flex">
+                <div class="medidas-formulario">
+                    <section class="body-measure-container">
+                        <h2>Registro de Medidas Corporales</h2>
+                        <div class="body-figure-area">
+                            <img src="{% static 'imagenes/cuerpo.png' %}" />
+                            <div class="measure-field field-pecho">
+                                <label for="pecho">Pecho</label>
+                                <input type="number" id="pecho" name="pecho" min="0" max="300" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-brazo">
+                                <label for="brazo">Brazo izq.</label>
+                                <input type="number" id="brazo" name="brazo" min="0" max="80" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-brazo-der">
+                                <label for="brazo_der">Brazo der.</label>
+                                <input type="number" id="brazo_der" name="brazo_der" min="0" max="80" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-antebrazo">
+                                <label for="antebrazo">Antebrazo izq.</label>
+                                <input type="number" id="antebrazo" name="antebrazo" min="0" max="60" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-antebrazo-der">
+                                <label for="antebrazo_der">Antebrazo der.</label>
+                                <input type="number" id="antebrazo_der" name="antebrazo_der" min="0" max="60" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-cintura">
+                                <label for="cintura">Cintura</label>
+                                <input type="number" id="cintura" name="cintura" min="0" max="200" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-gemelos">
+                                <label for="gemelos">Gemelo der.</label>
+                                <input type="number" id="gemelos" name="gemelos" min="0" max="60" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-gemelos-izq">
+                                <label for="gemelos_izq">Gemelo izq.</label>
+                                <input type="number" id="gemelos_izq" name="gemelos_izq" min="0" max="60" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-cuello">
+                                <label for="cuello">Cuello</label>
+                                <input type="number" id="cuello" name="cuello" min="0" max="60" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-pierna-izq">
+                                <label for="pierna_izq">Pierna izq.</label>
+                                <input type="number" id="pierna_izq" name="pierna_izq" min="0" max="120" step="0.1" placeholder="cm">
+                            </div>
+                            <div class="measure-field field-pierna-der">
+                                <label for="pierna_der">Pierna der.</label>
+                                <input type="number" id="pierna_der" name="pierna_der" min="0" max="120" step="0.1" placeholder="cm">
+                            </div>
+                        </div>
+                        <form class="registro-medidas-form" id="medidasForm">
+                            <button type="submit">Guardar Medidas</button>
+                        </form>
+                        <div class="medidas-resultado" id="medidasResultado"></div>
+                    </section>
+                </div>
+                <div class="medidas-comparacion" id="medidasComparacion">
+                    <h3>Comparación de Medidas</h3>
+                    <div id="comparacionContenido">
+                        <p>No hay registros previos.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+{% include "layouts/footer.html" %}
+
+<script src="{% static 'js/medidas.js' %}"></script>

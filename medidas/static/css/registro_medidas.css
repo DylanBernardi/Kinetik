@@ -1,0 +1,406 @@
+.body-measure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+  gap: 24px;
+}
+.body-figure-area {
+  position: relative;
+  width: 320px;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+.body-figure-area img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.measure-field {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+/* Ubicación de los campos alrededor de la figura */
+
+/* Cuello (arriba, flecha hacia abajo) */
+.field-cuello {
+  top: 70px;
+  left: -50px;
+  transform: none;
+}
+.field-cuello::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  height: 2px;
+  background: #888;
+}
+.field-cuello::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 90px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Pecho (flecha diagonal hacia abajo al centro) */
+.field-pecho {
+  top: 0px;
+  left: 100%;
+  transform: translate(-50%, 0);
+}
+.field-pecho::before {
+  content: "";
+  position: absolute;
+  left: -20%;
+  bottom: -84px;
+  width: 170px; 
+  height: 2px;
+  background: #888;
+  transform: translateX(-40%) rotate(-30deg);
+  transform-origin: left bottom;
+}
+.field-pecho::after {
+  content: "";
+  position: absolute;
+  left: calc(50% + -145px);
+  bottom: -90px;
+  transform: translateX(-50%) rotate(-30deg);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Brazo izquierdo */
+.field-brazo {
+  top: 155px;
+  left: -98px;
+  transform: none;
+}
+.field-brazo::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 75px;
+  height: 2px;
+  background: #888;
+}
+.field-brazo::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 75px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Brazo derecho */
+.field-brazo-der {
+  top: 155px;
+  right: -125px;
+  transform: none;
+}
+.field-brazo-der::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 75px;
+  height: 2px;
+  background: #888;
+}
+.field-brazo-der::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 75px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Antebrazo izquierdo */
+.field-antebrazo {
+  top: 214px;
+  left: -110px;
+  transform: none;
+}
+.field-antebrazo::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 57px;
+  height: 2px;
+  background: #888;
+}
+.field-antebrazo::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 57px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Antebrazo derecho */
+.field-antebrazo-der {
+  top: 214px;
+  right: -140px;
+  transform: none;
+}
+.field-antebrazo-der::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 57px;
+  height: 2px;
+  background: #888;
+}
+.field-antebrazo-der::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 57px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Cintura (abajo, flecha hacia arriba) */
+.field-cintura {
+  top: 270px;
+  left: 100%;
+  transform: none;
+}
+.field-cintura::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 2px;
+  background: #888;
+}
+.field-cintura::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 80px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Pierna izquierda */
+.field-pierna-izq {
+  bottom: 220px;
+  left: -60px;
+  transform: none;
+}
+.field-pierna-izq::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 2px;
+  background: #888;
+}
+.field-pierna-izq::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 60px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Pierna derecha */
+.field-pierna-der {
+  bottom: 220px;
+  left: 300px;
+  transform: none;
+}
+.field-pierna-der::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 2px;
+  background: #888;
+}
+.field-pierna-der::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 60px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+/* Gemelo izquierdo */
+.field-gemelos-izq {
+  bottom: 100px;
+  left: -33px;
+  transform: none;
+}
+.field-gemelos-izq::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 2px;
+  background: #888;
+}
+.field-gemelos-izq::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #888;
+}
+
+/* Gemelo derecho */
+.field-gemelos {
+  bottom: 100px;
+  right: -60px;
+  transform: none;
+}
+.field-gemelos::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 2px;
+  background: #888;
+}
+.field-gemelos::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent #888 transparent transparent;
+}
+
+.medidas-flex {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.medidas-formulario {
+  flex: 1 1 350px;
+  max-width: 500px;
+}
+.medidas-comparacion {
+  flex: 1 1 300px;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 2px 8px #0001;
+  margin-left: 4rem;
+  margin-top: 10rem;
+}
+
+
+/* no se si sirve para algo */
+.registro-medidas-form {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.registro-medidas-form button {
+  padding: 8px 20px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.registro-medidas-form label {
+  font-size: 0.95em;
+  margin-bottom: 2px;
+}
+.registro-medidas-form input {
+  width: 70px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+.medidas-resultado {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.notificacion-exito {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    background: var(--color-primary); 
+    color: white; 
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out; 
+    animation: fadeIn 0.3s forwards, fadeOut 0.3s 2.2s forwards; 
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

@@ -5,4 +5,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('',include('calculadoras.urls')),
+    path('',include('medidas.urls')),
+    path('',include('peso.urls')),
 ]

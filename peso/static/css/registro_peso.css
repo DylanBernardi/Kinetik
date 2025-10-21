@@ -1,0 +1,235 @@
+.peso-section {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.peso-section h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+}
+
+.peso-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.peso-input-group label {
+  font-weight: 500;
+  color: var(--color-text);
+  min-width: 80px;
+}
+
+.peso-input-group input {
+  width: 100px;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.peso-input-group input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+  outline: none;
+}
+
+.peso-input-group span {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.btn-registro-peso {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.btn-registro-peso:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tabla de comparación de peso */
+.peso-comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  margin-top: 1rem;
+}
+
+.peso-comparison-table th {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.peso-comparison-table th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.peso-comparison-table th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.peso-comparison-table td {
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.peso-comparison-table tr:hover td {
+  background: var(--color-secondary);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Estilo para el cambio de peso */
+.peso-change {
+  font-weight: 600;
+}
+
+.peso-change.positive {
+  color: #2ed573; /* Verde para aumento */
+}
+
+.peso-change.negative {
+  color: #ff4757; /* Rojo para disminución */
+}
+
+.peso-change.neutral {
+  color: var(--color-text);
+}
+.peso-page-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.peso-registro-panel,
+.peso-historial-panel {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.peso-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: var(--color-secondary);
+  border-radius: 8px;
+}
+
+.stat-item h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.stat-item span {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.peso-filtros {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-filtro {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-border);
+  background: white;
+  color: var(--color-text);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-filtro:hover,
+.btn-filtro.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.peso-table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.btn-eliminar {
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background: #ff3838;
+  transform: scale(1.1);
+}
+
+.peso-progreso-visual {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin-top: 2rem;
+}
+
+.progreso-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  background: var(--color-secondary);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+}

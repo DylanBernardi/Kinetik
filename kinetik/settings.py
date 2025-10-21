@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "main",
     "calculadoras",
+    "medidas",
+    "peso",
 ]
 
 AUTH_USER_MODEL = "main.Usuario"
