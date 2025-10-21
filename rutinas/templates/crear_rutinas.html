@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Rutinas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="icon"
+      type="icon"
+      href="{% static 'imagenes/logo.png' %}"
+      class="icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/crear_rutinas.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <div class="container">
+    {% include "layouts/navegacion.html" %}
+    <main class="main-content">
+            <div class="create-routine-container">
+                <h2>Crear Rutina Personalizada</h2>
+                
+                <div class="routine-settings">
+                    <input type="text" id="routineTitle" placeholder="Nombre de la rutina" class="form-input">
+                    <select id="routineFrequency" class="form-select">
+                        <option value="">Selecciona frecuencia</option>
+                        <option value="3">3 veces por semana</option>
+                        <option value="4">4 veces por semana</option>
+                        <option value="5">5 veces por semana</option>
+                        <option value="6">6 veces por semana</option>
+                    </select>
+                    <select id="routineRest" class="form-select">
+                        <option value="">Días de descanso</option>
+                    </select>
+                </div>
+
+                <form id="exerciseForm" class="exercise-form">
+                    <div class="form-row">
+                        <select id="daySelect" class="form-select"><option value="">Selecciona el día</option></select>
+                        <select id="muscleGroup" class="form-select">
+                            <option value="">Grupo muscular</option>
+                            <option value="pecho">Pecho</option>
+                            <option value="espalda">Espalda</option>
+                            <option value="piernas">Piernas</option>
+                            <option value="hombros">Hombros</option>
+                            <option value="biceps">Bíceps</option>
+                            <option value="triceps">Tríceps</option>
+                            <option value="core">Core</option>
+                        </select>
+                        <input type="text" id="exerciseName" placeholder="Nombre del ejercicio" class="form-input">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="exerciseSets" placeholder="Series (ej: 3)" class="form-input">
+                        <input type="text" id="exerciseReps" placeholder="Repeticiones (ej: 12)" class="form-input">
+                        <button id="addExercise" class="btn-primary">Agregar Ejercicio</button>
+                    </div>
+                </form>
+
+                <div id="daysContainer" class="days-container"></div>
+                <button id="createRoutine" class="btn-primary create-button">Crear Rutina</button>
+            </div>
+        </main>
+
+{% include "layouts/footer.html" %}

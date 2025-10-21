@@ -1,0 +1,417 @@
+  
+/* 1. LAYOUT PRINCIPAL Y CONTENEDORES */
+
+.hidden {
+    display: none !important; 
+}
+/* Contenedor principal de la página Mis Rutinas (resuelve la superposición) */
+.main-area {
+    display: grid;
+  
+    grid-template-columns: 1fr 350px; 
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px; 
+    margin: 0 auto;
+}
+
+/* Contenedor del contenido principal: Filtros y Rutinas */
+.main-content {
+   
+    padding-right: 1rem; 
+    width: 100%;
+}
+
+/* El bloque que contiene la búsqueda y filtros */
+.my-routines-container {
+    background: var(--color-card);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    /* Se elimina max-width aquí para que use el ancho completo de main-content */
+}
+
+
+/* 2. FILTROS Y BÚSQUEDA */
+
+
+.routines-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap; 
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+    margin-right: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    outline: none;
+}
+
+.filter-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.filter-options select {
+    padding: 0.75rem;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    min-width: 150px;
+    font-size: 1rem;
+    background: white;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-options select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    outline: none;
+}
+
+.filter-options select:hover {
+    border-color: var(--color-primary);
+}
+
+
+/* 3. GRILLA DE RUTINAS */
+
+
+.routines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.routine-card {
+    background: var(--color-card-light); 
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.routine-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.routine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.routine-title {
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Acciones (botones de editar/favorito) */
+.routine-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: var(--color-secondary-light);
+    color: var(--color-primary);
+}
+
+.action-btn.favorite.active {
+    color: var(--color-accent); 
+}
+
+.routine-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.day-badge {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.routine-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Botones de acción */
+.btn-view {
+    flex: 1;
+    padding: 0.75rem;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    padding: 0.75rem;
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+
+/* 4. BARRA LATERAL (SIDEBAR) */
+
+
+.sidebar {
+    background-color: var(--color-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    position: sticky; 
+    top: 20px;
+    height: fit-content;
+}
+
+.featured-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.featured-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.featured-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stats-card {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+}
+
+.stat-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--color-border-light);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+
+.tip-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+}
+
+.tip-card i {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    margin-top: 3px;
+    min-width: 20px; /* Asegura alineación */
+}
+
+/* Estilos de Rutinas Recientes */
+.recent-routine-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--color-border-light);
+    font-size: 1rem;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+
+/* 5. MENSAJE SIN RUTINAS */
+
+
+.no-routines-message {
+    /* Centrado en el main-content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    width: 100%;
+    background: var(--color-card-light);
+    border-radius: 12px;
+    border: 2px dashed var(--color-border);
+    align-items: center; 
+    margin: 2rem auto; 
+    max-width: 600px; 
+    width: 100%;
+    background: white; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+    border: none; 
+}
+
+.no-routines-message i {
+    font-size: 4rem;
+    color: var(--color-border);
+    margin-bottom: 1.5rem;
+}
+
+.no-routines-message h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.no-routines-message p {
+    margin-bottom: 2rem;
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.btn-create-first {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-create-first:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: white;
+}
+
+
+/* 6. RESPONSIVE (Ajustes para pantallas pequeñas) */
+
+
+@media (max-width: 1024px) {
+    .main-area {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .sidebar {
+        
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .routines-filters {
+        
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        margin-right: 0;
+        min-width: 100%;
+    }
+    
+    .filter-options {
+        
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .filter-options select {
+        
+        min-width: 48%; 
+    }
+    
+    .routines-grid {
+        
+        grid-template-columns: 1fr; 
+        gap: 1rem;
+    }
+}

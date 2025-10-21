@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrenamiento en Casa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        rel="icon"
+        type="icon"
+        href="{% static 'imagenes/logo.png' %}"
+        class="icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/entrenamientos_casa_gimnasio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+</head>
+
+<body>
+    <div class="container">
+        {% include "layouts/navegacion.html" %}
+        <main>
+            <div class="training-content">
+                <h1>Entrenamientos en Casa</h1>
+
+                <div class="training-filters">
+                    <select id="frequency" onchange="filterRoutines()">
+                        <option value="">Seleccione frecuencia</option>
+                        <option value="full-body">Full Body</option>
+                        <option value="upper-lower">Torso/Pierna</option>
+                    </select>
+
+                    <select id="difficulty" onchange="filterRoutines()">
+                        <option value="">Seleccione nivel</option>
+                        <option value="principiante">Principiante</option>
+                        <option value="avanzado">Avanzado</option>
+                    </select>
+                </div> <div id="routineMessage" class="routine-message">
+                    Seleccione frecuencia y nivel para ver las rutinas disponibles
+                </div>
+
+                <div id="workoutsGrid" class="workouts-grid hidden">
+                    
+                    
+                </div>  
+            
+            </main>
+    </div> {% include "layouts/footer.html" %}
+</body>
+</html>

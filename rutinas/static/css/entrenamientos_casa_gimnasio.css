@@ -1,0 +1,157 @@
+.hidden {
+    display: none;
+}
+
+/* --- Filtros y Mensaje Inicial --- */
+
+.training-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.training-filters select {
+    padding: 0.75rem;
+    margin: 0.5rem; /* Ajuste: Mantenido para el margen interno */
+    min-width: 200px;
+}
+
+.routine-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-text-light); /* Asumiendo que var(--color-text-light) es un color apropiado */
+    font-size: 1.1rem;
+    padding: 0; 
+    color: var(--color-text-light); 
+    font-size: 1.1rem;
+}
+
+/* --- Contenedor Principal --- */
+
+.training-content-limited {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.training-content h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem; 
+    font-weight: 600;
+    color: var(--color-text);
+    padding: 1rem 0;
+}
+
+/* --- Estilos de Rutina (Día/Ejercicio) --- */
+
+.workout-card {
+    background: var(--color-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.workout-card h3 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.day-tab {
+    background: var(--color-background-light);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.day-tab h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.exercise-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exercise-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.exercise-list li:last-child {
+    border-bottom: none;
+}
+
+.routine-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--color-secondary);
+    border-radius: 8px;
+}
+
+.routine-info p {
+    margin: 0.5rem 0;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+/* --- Layout de Columnas Específicas para las Rutinas --- */
+
+.workouts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.workout-columns { /* Contenedor de las grillas de días */
+    margin: 1.5rem 0;
+    width: 100%;
+}
+
+.workout-columns.three-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.workout-columns.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.ppl-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+
+.main-area {
+    display: grid;
+    grid-template-columns: 1fr 600px;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    background-color: var(--color-card);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+

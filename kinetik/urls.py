@@ -7,4 +7,5 @@ urlpatterns = [
     path('',include('calculadoras.urls')),
     path('',include('medidas.urls')),
     path('',include('peso.urls')),
+    path('',include('rutinas.urls')),
 ]

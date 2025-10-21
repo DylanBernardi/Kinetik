@@ -1,0 +1,146 @@
+/* Estilos crear rutina */
+.create-routine-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: var(--shadow-sm);
+}
+
+.routine-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.exercise-form {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row:last-child {
+  grid-template-columns: 1fr 1fr 2fr;
+  margin-bottom: 0;
+}
+
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.day-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.day-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+}
+
+.exercise-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.create-button {
+  display: block;
+  width: 200px;
+  margin: 2rem auto 0;
+}
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.day-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.day-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+}
+
+.exercise-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.exercise-list li:last-child {
+  border-bottom: none;
+}
+.muscle-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-right: 8px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.muscle-tag.pecho {
+  background-color: #ff4757;
+}
+.muscle-tag.espalda {
+  background-color: #2ed573;
+}
+.muscle-tag.piernas {
+  background-color: #1e90ff;
+}
+.muscle-tag.hombros {
+  background-color: #ffa502;
+}
+.muscle-tag.biceps {
+  background-color: #7bed9f;
+}
+.muscle-tag.triceps {
+  background-color: #70a1ff;
+}
+.muscle-tag.core {
+  background-color: #5352ed;
+}
+.muscle-tag.cardio {
+  background-color: #ff6b81;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}

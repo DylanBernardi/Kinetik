@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "calculadoras",
     "medidas",
     "peso",
+    "rutinas",
 ]
 
 AUTH_USER_MODEL = "main.Usuario"

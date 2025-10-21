@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Rutinas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="icon"
+      type="icon"
+      href="{% static 'imagenes/logo.png' %}"
+      class="icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mis_rutinas.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <div class="container">
+    {% include "layouts/navegacion.html" %}
+    <main class="main-area">
+            <div class="main-content">
+                <h1>Mis Rutinas</h1>
+                <div class="my-routines-container hidden">
+                    
+                    
+                    <!-- Filtros y búsqueda -->
+                    <div class="routines-filters">
+                        <div class="search-box">
+                            <input type="text" id="searchRoutines" placeholder="Buscar rutinas...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="filterByDays">
+                                <option value="">Todos los días</option>
+                                <option value="3">3 días</option>
+                                <option value="4">4 días</option>
+                                <option value="5">5 días</option>
+                                <option value="6">6 días</option>
+                            </select>
+                            <select id="filterByType">
+                                <option value="">Todos los tipos</option>
+                                <option value="push-pull-legs">Push/Pull/Legs</option>
+                                <option value="upper-lower">Upper/Lower</option>
+                                <option value="full-body">Full Body</option>
+                                <option value="custom">Personalizada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Lista de rutinas -->
+                    <div class="routines-grid" id="routinesContainer">
+                        <!-- Las rutinas se cargarán aquí dinámicamente -->
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- Mensaje cuando no hay rutinas -->
+                    <div class="no-routines-message" id="noRoutinesMessage" >
+                        <i class="fas fa-folder-open"></i>
+                        <h3>No tienes rutinas guardadas</h3>
+                        <p>Crea tu primera rutina para comenzar tu entrenamiento</p>
+                        <a href="crear_rutina.html" class="btn-create-first">
+                            <i class="fas fa-plus"></i> Crear mi primera rutina
+                        </a>
+                    </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar hidden">
+                <div class="featured-section">
+                    <h2><i class="fas fa-star"></i> Estadísticas</h2>
+                    <div class="stats-card">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalRoutines">0</span>
+                            <span class="stat-label">Rutinas creadas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="favoriteRoutines">0</span>
+                            <span class="stat-label">Rutinas favoritas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="completedWorkouts">0</span>
+                            <span class="stat-label">Entrenamientos completados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-section">
+                    <h2><i class="fas fa-clock"></i> Rutinas Recientes</h2>
+                    <div class="recent-routines" id="recentRoutines">
+                        <!-- Se cargarán las rutinas recientes -->
+                    </div>
+                </div>
+
+                <div class="featured-section">
+                    <h2><i class="fas fa-lightbulb"></i> Consejos</h2>
+                    <div class="tips-container">
+                        <div class="tip-card">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Organiza tus rutinas por objetivos para encontrarlas más fácil</p>
+                        </div>
+                        <div class="tip-card">
+                            <i class="fas fa-heart"></i>
+                            <p>Marca como favoritas las rutinas que más te gusten</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        </div> {% include "layouts/footer.html" %}
+      </body>
+</html>
