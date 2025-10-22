@@ -1,133 +1,277 @@
 @import url("globales.css");
-/* Barra de arriba */
+
+
+/* BARRA SUPERIOR (HEADER-TOP)                        */
+
 .main-header {
-  background: var(--gradient-header);
-  display: flex;
-  flex-direction: column;
+    background: var(--gradient-header);
+    display: flex;
+    flex-direction: column;
 }
-
 .header-top {
-  margin: 1.5rem 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+    max-width: 1400px; 
+    margin: 1.5rem auto;
+    padding: 0 20px;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: row;
 }
-
-.logo {
-  margin-bottom: 0;
-  font-size: 2rem;
-}
-
-.dumbell:hover {
-  color: #e45757;
-  margin-bottom: 0;
-}
-
 .dumbell {
-  color: white;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  text-transform: lowercase;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+    font-size: 2rem;
 }
-
+.dumbell:hover {
+    color: #e45757;
+}
 .user-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-end;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
 }
-
 .user-actions a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.5em;
-  transition: color 0.3s ease;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
 }
-
 .user-actions a:hover {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
-/*Barra de abajo (Navegacion)*/
+
+/* BARRA DE NAVEGACIÓN (DESKTOP)                      */
+
 .main-nav {
-  background-color: var(--color-card);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 1rem;
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
 }
-
 .main-nav ul {
-  list-style: none;
-  padding: 0.5rem;
-  margin: 0;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+    list-style: none;
+    max-width: 1400px; 
+    margin: 0 auto;
+    padding: 0.5rem 20px; 
+    box-sizing: border-box; 
+    display: flex;
+    justify-content: center;
 }
-
 .main-nav ul li a {
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 500;
-  padding: 1rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  border: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    padding: 1rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-border);
 }
-
 .main-nav ul li a:hover {
-  color: var(--color-primary);
-  background-color: var(--color-secondary);
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
 }
 
-/*Drdopdown menu*/
+/* DROPDOWN MENU (Desktop) */
 .dropdown {
-  position: relative;
+    position: relative;
 }
-
 .main-nav ul li a,
 .main-nav .dropdown > a {
-  display: block;
-  padding: 0.75rem 1.25rem;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-/* Estilos del menú dropdown para desktop */
-.main-nav .dropdown-menu {
-  display: none;
-  position: absolute;
-  background: white;
-  min-width: 200px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  padding: 0.5rem 0;
-}
-
-.main-nav .dropdown-menu a {
-  text-decoration: none;
-  border: none;
-}
-
-/* Mostrar menú en hover solo en desktop */
-@media (min-width: 769px) {
-  .main-nav .dropdown:hover > .dropdown-menu {
     display: block;
-  }
+    padding: 0.75rem 1.25rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+.main-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    padding: 0;
+    margin: 0;
+}
+.main-nav .dropdown-menu a {
+    text-decoration: none;
+    border: none;
+}
+@media (min-width: 769px) {
+    .main-nav .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
 }
 
-/*Boton borrar rutinas*/
+/* OTROS ESTILOS (Botones) */
 .btn-borrar-rutinas {
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 12px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 500;
-  margin-top: 10px;
-  transition: background 0.3s;
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: background 0.3s;
 }
 .btn-borrar-rutinas:hover {
-  background: #c82333;
+    background: #c82333;
+}
+
+
+/* REGLAS BASE DE RESPONSIVE (Desktop/General)        */
+
+.menu-toggle, .mobile-only {
+    display: none;
+}
+.desktop-only {
+    display: flex;
+}
+.logo {
+    margin-bottom: 0;
+}
+
+
+/* REGLAS RESPONSIVE (MÓVILES: <= 768px)              */
+
+@media (max-width: 768px) {
+
+    /* --- Visibilidad y Controles --- */
+    .menu-toggle {
+        display: block; 
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1001; 
+        padding: 0;
+    }
+    .desktop-only {
+        display: none !important; 
+    }
+    .mobile-only {
+        display: block; 
+    }
+
+    /* --- Off-Canvas: Posicionamiento del Menú Lateral --- */
+    .main-nav {
+        max-width: none; 
+        position: fixed;
+        top: 0;
+        right: -300px; 
+        width: 300px; 
+        height: 100vh;
+        background-color: var(--color-primary-dark); 
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transition: right 0.3s ease-in-out;
+        margin: 0; 
+    }
+    .main-nav.open {
+        right: 0; 
+    }
+
+    /* --- Estructura Interna del Menú Móvil --- */
+    .main-nav ul {
+        max-width: none;
+        display: flex; 
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 4rem 0 1rem 0; 
+        margin: 0; 
+        height: 100%;
+        overflow-y: auto; 
+    }
+    
+    /* Regla base de separación para todos los <li> */
+    .main-nav ul li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0;
+        margin: 0; /* Aseguramos que no haya margen por defecto */
+    }
+
+    .main-nav ul li a {
+        color: white;
+        border: none;
+        padding: 1rem 1.5rem;
+        text-align: left;
+    }
+
+    /* --- Dropdown en Móvil (Ajustes de Display) --- */
+    .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .main-nav .dropdown-menu {
+        display: none; 
+        position: static; 
+        background: rgba(0, 0, 0, 0.1); 
+        border: none;
+        /* ANULACIÓN TOTAL DE ESPACIOS */
+        padding: 0 !important; 
+        margin: 0 !important;
+    }
+    .main-nav .dropdown-menu a {
+        padding-left: 2.5rem; 
+        font-size: 0.95rem;
+        border-bottom: none;
+        padding-top: 0.75rem; 
+        padding-bottom: 0.75rem; 
+    }
+    .main-nav .dropdown.active > .dropdown-menu {
+        display: block; 
+    }
+
+
+    /*  SOLUCIÓN FINAL AL ESPACIO VACÍO Y ALINEACIÓN   */
+
+
+    /* 1. ELIMINAR EL BORDE Y ESPACIO DEL LI PRINCIPAL DEL DROPDOWN */
+    .main-nav ul li.dropdown {
+        border-bottom: none !important; /* El dropdown NO debe tener borde inferior */
+        margin: 0 !important;
+        padding: 0 !important;
+        /* Truco para forzar el colapso de márgenes */
+        overflow: hidden !important; 
+        display: block; 
+    }
+
+    /* 2. LIMPIEZA TOTAL DEL SUBMENÚ */
+    .main-nav .dropdown-menu {
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none;
+    }
+
+    /* 3. REAJUSTE DE LOS BORDES DENTRO DEL SUBMENÚ */
+    .main-nav .dropdown-menu li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 4. ELIMINAR BORDE DEL ÚLTIMO SUB-ENLACE (Mis Rutinas) */
+    .main-nav .dropdown-menu li:last-child {
+        border-bottom: none !important; 
+    }
+    
+    /* 5. AJUSTE DE "MEDIDAS" (LI:NTH-CHILD(2)) */
+    .main-nav ul li:nth-child(2) { 
+        /* Elimina el borde superior que duplicaba la línea de separación */
+        border-top: none !important; 
+        
+        /* Elimina padding del LI */
+        padding: 0 !important;
+        
+        /* Si reaparece el espacio, cambia a margin-top: -1px !important; */
+        margin-top: 0 !important;
+    }
 }
