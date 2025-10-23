@@ -59,6 +59,7 @@
     box-sizing: border-box; 
     display: flex;
     justify-content: center;
+    gap: 20px;
 }
 .main-nav ul li a {
     text-decoration: none;
@@ -187,6 +188,7 @@
         margin: 0; 
         height: 100%;
         overflow-y: auto; 
+        gap: 0px;
     }
     
     /* Regla base de separación para todos los <li> */

@@ -217,10 +217,111 @@ button:hover,
   margin: 0 auto;
 }
 
-.calendar-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+/* Responsive Design */
+@media (max-width: 767px) {
+  .contenedor {
+    flex-direction: column;
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  /* Ocultar solo el contenido principal de la página de inicio en móvil */
+  .contenedor > .main-content {
+    display: none;
+  }
+
+  /* Mantener visible solo el sidebar con calendario y rutina */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    position: static;
+    width: 92%;
+    margin: 0;
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  #routineSection,
+  #calendarSection {
+    background: var(--color-card);
+    border-radius: 12px;
+    width: 92%;
+    padding: 1rem;
+    margin: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  #calendar {
+    margin-top: 0.5rem;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+  }
+
+  .nav-controls {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .month-title {
+    font-size: 1.1rem;
+    min-width: 100px;
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  input[type="text"] {
+    max-width: 100%;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contenedor {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    position: static;
+    flex-basis: auto;
+    width: 93%;
+  }
+
+  .section-div__div {
+    gap: 15px;
+  }
+
+  .tarjeta {
+    min-width: 280px;
+  }
+
+  .nav-controls {
+    width: 350px;
+  }
+}
+
+/* Desktop pequeño */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .contenedor {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    flex-basis: 280px;
+  }
+
+  .section-div__div {
+    gap: 15px;
+  }
+
+  .tarjeta {
+    min-width: 280px;
+  }
 }

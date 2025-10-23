@@ -155,3 +155,105 @@
     height: fit-content;
 }
 
+/* Responsive Design */
+@media (max-width: 767px) {
+    .training-content-limited {
+        padding: 1rem;
+    }
+
+    .training-content h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .training-filters {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .training-filters select {
+        width: 100%;
+        max-width: 300px;
+        min-width: auto;
+    }
+
+    .workouts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .workout-columns.three-columns,
+    .workout-columns.two-columns,
+    .ppl-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .workout-card {
+        padding: 1rem;
+    }
+
+    .workout-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .main-area {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .training-content-limited {
+        padding: 1.5rem;
+    }
+
+    .training-filters {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .workouts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .workout-columns.three-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ppl-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-area {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}
+
+/* Desktop pequeño */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .main-area {
+        grid-template-columns: 1fr 400px;
+    }
+
+    .workout-columns.three-columns {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+

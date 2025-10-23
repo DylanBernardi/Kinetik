@@ -1,10 +1,17 @@
 .body-measure-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   margin-top: 32px;
   gap: 24px;
 }
+
+.body-measure-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
 .body-figure-area {
   position: relative;
   width: 320px;
@@ -403,4 +410,212 @@
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+/* Responsive Design */
+/* Mobile First - Base styles for mobile */
+@media (max-width: 767px) {
+    .body-measure-container {
+        margin-top: 16px;
+        gap: 16px;
+    }
+
+    /* Ocultar solo la imagen en móviles */
+    .body-figure-area img {
+        display: none;
+    }
+
+    .body-figure-area {
+        position: static;
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Reorganizar campos de medida para móvil */
+    .measure-field {
+        position: static;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--color-card);
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+        width: auto;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+    }
+
+    /* Eliminar las flechas en móvil */
+    .measure-field::before,
+    .measure-field::after {
+        display: none !important;
+    }
+
+    .measure-field label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--color-text);
+        margin: 0;
+        flex: 1;
+        text-align: left;
+    }
+
+    .measure-field input {
+        width: 100px;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-left: 1rem;
+    }
+
+    /* Reset específico para el campo de pecho en móvil */
+    .field-pecho {
+        position: static !important;
+        left: auto !important;
+        transform: none !important;
+    }
+
+    .field-pecho::before,
+    .field-pecho::after {
+        display: none !important;
+    }
+
+    .medidas-flex {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+        padding: 0;
+    }
+
+    .medidas-comparacion {
+        margin: 1rem;
+        background: var(--color-card);
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .medidas-comparacion h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .medidas-comparacion table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .medidas-comparacion td, 
+    .medidas-comparacion th {
+        padding: 0.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .medidas-formulario {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .registro-medidas-form button {
+        width: 100%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background: var(--gradient-primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .registro-medidas-form button {
+        grid-column: 1 / -1;
+        width: 100%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background: var(--gradient-primary);
+        font-size: 1rem;
+    }
+
+    .medidas-comparacion {
+        margin-top: 1rem;
+        padding: 1.5rem;
+        border-radius: 12px;
+        background: var(--color-card);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .registro-medidas-form input {
+        width: 60px;
+        font-size: 0.9rem;
+    }
+
+    .registro-medidas-form label {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .body-measure-container {
+        margin-top: 24px;
+    }
+
+    .medidas-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .medidas-formulario,
+    .medidas-comparacion {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .medidas-comparacion {
+        margin-top: 2rem;
+    }
+
+    .body-figure-area {
+        width: 300px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .body-measure-container {
+        margin-top: 32px;
+    }
+
+    .medidas-flex {
+        gap: 32px;
+        justify-content: center;
+    }
+
+    .medidas-formulario {
+        flex: 1 1 350px;
+        max-width: 500px;
+    }
+
+    .medidas-comparacion {
+        flex: 1 1 300px;
+        max-width: 400px;
+        margin-left: 4rem;
+        margin-top: 10rem;
+    }
+
+    .body-figure-area {
+        width: 320px;
+    }
 }

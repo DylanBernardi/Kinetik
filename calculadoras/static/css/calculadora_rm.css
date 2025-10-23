@@ -24,8 +24,8 @@
 .calculator-flex {
     display: flex;
     justify-content: space-between;
-    gap: 10rem;
-    padding: 2rem;
+    gap: 1rem;
+    padding: 1rem;
     max-width: 1200px;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -38,10 +38,10 @@
 .calculator-form {
     /* Utiliza .panel-card en HTML */
     flex: 1;
-    min-width: 320px;
+    min-width: 280px;
     max-width: 500px;
-    padding: 2rem;
-    margin-right: 1rem;
+    padding: 1rem;
+    margin-right: 0;
 }
 
 .calculator-form h2 {
@@ -225,4 +225,106 @@
     content: "⚠️";
     margin-right: 0.5rem;
     font-size: 1.2rem;
+}
+
+/* 
+   9. RESPONSIVE DESIGN
+*/
+
+/* Estilos base para móvil primero */
+@media (max-width: 767px) {
+    .calculator-flex {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .calculator-form,
+    .rm-table-container {
+        width: 90%;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0rem;
+        padding: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 90%;
+        font-size: 0.95rem;
+        padding: 0.5rem;
+    }
+
+    .rm-table th,
+    .rm-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .warning-text {
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+
+    #resultado {
+        padding: 1rem;
+    }
+
+    .rm-value {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .calculator-flex {
+        padding: 2rem;
+        gap: 3rem;
+    }
+
+    .calculator-form,
+    .rm-table-container {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .calculator-flex {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    .calculator-form,
+    .rm-table-container {
+        width: 45%;
+        margin: 0;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    .calculator-flex {
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 6rem;
+    }
+
+    .calculator-form,
+    .rm-table-container {
+        width: 40%;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 1.1rem;
+    }
 }

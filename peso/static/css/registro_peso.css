@@ -233,3 +233,104 @@
   border-radius: 8px;
   color: var(--color-text-secondary);
 }
+
+/* Responsive Design */
+/* Mobile First - Estilos base para móvil */
+@media (max-width: 767px) {
+  .peso-page-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .peso-registro-panel,
+  .peso-historial-panel {
+    padding: 1rem;
+  }
+
+  .peso-stats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .peso-filtros {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-filtro {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .peso-table-container {
+    max-height: 300px;
+  }
+
+  .peso-comparison-table th,
+  .peso-comparison-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .peso-input-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .peso-input-group input {
+    width: 90%;
+  }
+
+  .stat-item {
+    padding: 0.75rem;
+  }
+
+  .stat-item span {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .peso-page-container {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .peso-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .peso-filtros {
+    justify-content: center;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .peso-page-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .peso-registro-panel,
+  .peso-historial-panel {
+    padding: 2rem;
+  }
+
+  .peso-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .peso-input-group input {
+    width: 120px;
+  }
+}
