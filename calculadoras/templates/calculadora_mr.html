@@ -32,7 +32,8 @@
       <section class="calculator-flex">
         <div class="calculator-form">
           <h2>Calculadora de Metabolismo Basal (MR)</h2>
-          <form id="mrForm">
+          <form id="mrForm" data-ajax-url="/calculadora_mr/api">
+            {% csrf_token %}
             <label for="peso">Peso (kg):</label>
             <input type="number" id="peso" name="peso" min="1" required />
 
@@ -74,7 +75,7 @@
               <option value="subir">Subir peso</option>
             </select>
 
-            <button type="submit">Calcular</button>
+            <button type="submit" id="calcular">Calcular</button>
           </form>
           <div id="resultado" class="resultado"></div>
         </div>
@@ -95,67 +96,6 @@
 
     {% include "layouts/footer.html" %}
 
-    <script>
-      // Cálculo de MR y calorías
-      document
-        .getElementById("mrForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const peso = parseFloat(document.getElementById("peso").value);
-          const edad = parseInt(document.getElementById("edad").value);
-          const sexo = document.getElementById("sexo").value;
-          const actividad = document.getElementById("actividad").value;
-          const objetivo = document.getElementById("objetivo").value;
-
-          let mr;
-          if (sexo === "masculino") {
-            mr = 88.36 + 13.4 * peso + 5 * 170 - 6.8 * edad;
-          } else {
-            mr = 447.6 + 9.2 * peso + 3.1 * 160 - 4.3 * edad;
-          }
-
-          let factor = 1.2;
-          if (actividad === "ligero") factor = 1.375;
-          else if (actividad === "moderado") factor = 1.55;
-          else if (actividad === "intenso") factor = 1.725;
-          else if (actividad === "muy_intenso") factor = 1.9;
-
-          let calorias = mr * factor;
-          if (objetivo === "bajar") calorias -= 500;
-          else if (objetivo === "subir") calorias += 500;
-
-          // Macronutrientes
-          const proteinasGr = Math.round(peso * 2); // 2g por kg de peso
-          const proteinasKcal = proteinasGr * 4;
-          const grasasKcal = calorias * 0.25;
-          const grasasGr = Math.round(grasasKcal / 9);
-          const carbohidratosKcal = calorias - (proteinasKcal + grasasKcal);
-          const carbohidratosGr = Math.round(carbohidratosKcal / 4);
-
-          document.getElementById("resultado").innerHTML = `
-        <h3>Resultado:</h3>
-        <p>Tu requerimiento calórico diario estimado es: <strong>${Math.round(
-          calorias
-        )} kcal</strong></p>
-        <p>Para <strong>${
-          objetivo === "mantener"
-            ? "mantener tu peso"
-            : objetivo === "bajar"
-            ? "bajar de peso"
-            : "subir de peso"
-        }</strong>.</p>
-        <h4>Distribución de macronutrientes:</h4>
-        <ul style="list-style:none;padding:0;">
-            <li><strong>Proteínas:</strong> ${proteinasGr}g (${Math.round(
-            (proteinasKcal / calorias) * 100
-          )}%)</li>
-            <li><strong>Grasas:</strong> ${grasasGr}g (25%)</li>
-            <li><strong>Carbohidratos:</strong> ${carbohidratosGr}g (${Math.round(
-            (carbohidratosKcal / calorias) * 100
-          )}%)</li>
-        </ul>
-    `;
-        });
-    </script>
+    <script src="{% static 'js/macronutrientes.js' %}"></script>
   </div>
 </html>

@@ -29,7 +29,8 @@
     {% include "layouts/navegacion.html" %}
 
     <main class="calculator-flex">
-    <form id="rmForm" class="calculator-form panel-card">
+    <form id="rmForm" class="calculator-form panel-card" data-ajax-url="/calculadora_rm/api">
+            {% csrf_token %}
         <h2>Calculadora de Repetición Máxima (RM)</h2>
         
         <div class="form-group">
@@ -42,7 +43,7 @@
             <input type="number" id="reps" required min="1" max="15">
         </div>
 
-        <button type="submit">Calcular RM</button>
+        <button type="submit" id="calcular">Calcular RM</button>
         <p class="warning-text">Los valores son aproximados. Siempre tome los cálculos con precaución y realice aproximaciones conservadoras, especialmente si va a realizar un RM muy bajo. Su seguridad es lo primero.</p>
     </form>
 
@@ -62,46 +63,9 @@
     </div>
 </main>
 
+    <script src="{% static 'js/repeticiones.js' %}"></script>
+
 {% include "layouts/footer.html" %}
 
-<script>
-document.getElementById('rmForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const peso = parseFloat(document.getElementById('peso').value);
-    const reps = parseInt(document.getElementById('reps').value);
-    
-    // Calculamos el RM usando la fórmula de Brzycki
-    const rm = peso / (1.0278 - 0.0278 * reps);
-    
-    // Generamos la tabla de repeticiones
-    const tbody = document.querySelector('#rmTable tbody');
-    tbody.innerHTML = '';
-    
-    // Calculamos para repeticiones de 1 a 15
-    for(let i = 1; i <= 15; i++) {
-        const porcentaje = (1.0278 - 0.0278 * i) * 100;
-        const pesoRecomendado = rm * (porcentaje / 100);
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${i}</td>
-            <td>${Math.round(pesoRecomendado * 2) / 2}</td>
-            <td>${Math.round(porcentaje)}%</td>
-`;
-        
-        // Resaltamos la fila que corresponde a las repeticiones ingresadas
-        if(i === reps) {
-            row.classList.add('current-reps');
-        }
-        
-        tbody.appendChild(row);
-    }
-
-    
-}
-);
-</script>
-    <script src="src/js/auth.js"></script> 
 </body>
 </html>
