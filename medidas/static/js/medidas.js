@@ -1,118 +1,100 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
+  const medidasForm = document.getElementById("medidasForm");
+  const comparacionContenido = document.getElementById("comparacionContenido");
 
-    // 1. Configuración y Event Listener Principal
-    const medidasForm = document.getElementById('medidasForm');
+  // Función para obtener el CSRF token de Django
+  function getCookie(name) {
+    // ... (Tu función getCookie aquí) ...
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  const csrftoken = getCookie("csrftoken");
 
-if (medidasForm) {
-    medidasForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Definición de campos 
-        const campos = [
-            { id: 'pecho', label: 'Pecho' },
-            { id: 'brazo', label: 'Brazo izq.' },
-            { id: 'brazo_der', label: 'Brazo der.' },
-            { id: 'antebrazo', label: 'Antebrazo izq.' },
-            { id: 'antebrazo_der', label: 'Antebrazo der.' },
-            { id: 'cintura', label: 'Cintura' },
-            { id: 'pierna_izq', label: 'Pierna izq.' },
-            { id: 'pierna_der', label: 'Pierna der.' },
-            { id: 'gemelos', label: 'Gemelo der.' },
-            { id: 'gemelos_izq', label: 'Gemelo izq.' },
-            { id: 'cuello', label: 'Cuello' }
-        ];
+  if (medidasForm) {
+    medidasForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-        // Guardar registro actual
-        const registroActual = {};
-        campos.forEach(campo => {
-            const elemento = document.getElementById(campo.id);
-            if (elemento) {
-                registroActual[campo.id] = elemento.value;
-            }
+      // Limpiar errores previos
+      document.querySelectorAll(".error-message").forEach((el) => el.remove());
+
+      const formData = new FormData(medidasForm);
+
+      fetch(medidasForm.action, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+        },
+        body: formData,
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          if (!response.ok) {
+            // Si el estado es 400 (validación fallida) o 500 (error interno)
+            throw new Error(JSON.stringify(data));
+          }
+          return data;
+        })
+        .then((data) => {
+          // ÉXITO
+          actualizarTablaComparacion(data.data);
+          medidasForm.reset(); // Limpiar el formulario
+        })
+        .catch((errorJson) => {
+          // FALLO
+          const data = JSON.parse(errorJson.message);
+
+          if (data.status === "error" && data.errors) {
+            // Muestra los errores de campo devueltos por la vista de Django
+            Object.keys(data.errors).forEach((fieldName) => {
+              const inputElement = document.getElementById(fieldName);
+              if (inputElement) {
+                const errorMessage = document.createElement("p");
+                errorMessage.className = "error-message";
+                // Django devuelve una lista de errores; tomamos el primero
+                errorMessage.textContent = data.errors[fieldName];
+                inputElement.parentNode.appendChild(errorMessage);
+              }
+            });
+            mostrarNotificacion(data.message, "error");
+          } else {
+            mostrarNotificacion(
+              data.message || "Error de red. Inténtelo de nuevo.",
+              "error"
+            );
+          }
         });
-
-        // Obtener último registro
-        const ultimoRegistro = JSON.parse(localStorage.getItem('ultimoRegistroMedidas'));
-
-        // Guardar nuevo registro
-        localStorage.setItem('ultimoRegistroMedidas', JSON.stringify(registroActual));
-
-        // Llamada a las funciones de visualización
-        mostrarNotificacion('¡Registro guardado correctamente!');
-        mostrarComparacion(ultimoRegistro, registroActual, campos);
-
-
-        //LIMPIEZA DE TODOS LOS CAMPOS
-
-        campos.forEach(campo => {
-            const elemento = document.getElementById(campo.id);
-            if (elemento) {
-                elemento.value = ''; 
-            }
-        });
-        
     });
-}
+  }
 
-    // Cargar último registro guardado y mostrar la tabla de comparación si existe
-    const ultimoRegistroGuardado = JSON.parse(localStorage.getItem('ultimoRegistroMedidas'));
-    if (ultimoRegistroGuardado) {
-        const campos = [
-            { id: 'pecho', label: 'Pecho' },
-            { id: 'brazo', label: 'Brazo izq.' },
-            { id: 'brazo_der', label: 'Brazo der.' },
-            { id: 'antebrazo', label: 'Antebrazo izq.' },
-            { id: 'antebrazo_der', label: 'Antebrazo der.' },
-            { id: 'cintura', label: 'Cintura' },
-            { id: 'pierna_izq', label: 'Pierna izq.' },
-            { id: 'pierna_der', label: 'Pierna der.' },
-            { id: 'gemelos', label: 'Gemelo der.' },
-            { id: 'gemelos_izq', label: 'Gemelo izq.' },
-            { id: 'cuello', label: 'Cuello' }
-        ];
-    }
-});
-
-
-// 2. Funciones Auxiliares (Deben ser accesibles globalmente o dentro de DOMContentLoaded)
-
-// FUNCIÓN DE COMPARACIÓN
-function mostrarComparacion(ultimo, actual, campos) {
-    const comparacionContenido = document.getElementById('comparacionContenido');
+  // Función para actualizar la tabla (Similar a tu lógica JS original)
+  function actualizarTablaComparacion(medidas) {
     if (!comparacionContenido) return;
-    
-    let html = '';
-    if (!ultimo) {
-        html = '<p>Este es tu primer registro.</p>';
-    } else {
-        html = '<table style="width:100%;text-align:center;"><tr><th>Medida</th><th>Anterior</th><th>Actual</th><th>Cambio</th></tr>';
-        campos.forEach(campo => {
-            const prev = ultimo[campo.id] || '-';
-            const curr = actual[campo.id] || '-';
-            let cambio = '-';
-            
-            if (prev !== '-' && curr !== '-') {
-                const diff = (parseFloat(curr) - parseFloat(prev)).toFixed(1);
-                cambio = (diff > 0 ? '+' : '') + diff + ' cm';
-            }
-            
-            html += `<tr>
-                <td>${campo.label}</td>
-                <td>${prev} cm</td>
-                <td>${curr} cm</td>
-                <td>${cambio}</td>
-            </tr>`;
-        });
-        html += '</table>';
-    }
-    comparacionContenido.innerHTML = html;
-}
 
-// FUNCIÓN DE NOTIFICACIÓN 
-function mostrarNotificacion(msg) {
-    let notif = document.createElement('div');
-    notif.className = 'notificacion-exito'; // Asume que tienes este CSS
-    notif.innerText = msg;
-    document.body.appendChild(notif);
-    setTimeout(() => notif.remove(), 2500);
-}
+    let html =
+      '<table style="width:100%;text-align:center;"><tr><th>Medida</th><th>Anterior</th><th>Actual</th><th>Cambio</th></tr>';
+
+    medidas.forEach((m) => {
+      html += `<tr>
+                <td>${m.label}</td>
+                <td>${m.anterior} cm</td>
+                <td>${m.actual} cm</td>
+                <td>${m.cambio}</td>
+            </tr>`;
+    });
+
+    html += "</table>";
+    comparacionContenido.innerHTML = html;
+  }
+
+  // ... (Asegúrate de tener la función mostrarNotificacion definida) ...
+});
