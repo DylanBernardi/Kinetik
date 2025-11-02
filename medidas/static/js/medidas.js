@@ -96,5 +96,4 @@ document.addEventListener("DOMContentLoaded", function () {
     comparacionContenido.innerHTML = html;
   }
 
-  // ... (Asegúrate de tener la función mostrarNotificacion definida) ...
 });

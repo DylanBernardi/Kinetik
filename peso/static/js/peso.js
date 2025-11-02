@@ -1,308 +1,269 @@
-// 1. VARIABLES GLOBALES
+// Variables globales
 let filtroActual = "todos";
 
 // 2. FUNCIONES GLOBALES (Accedidas por el HTML)
 
-function mostrarNotificacion(msg) {
-  const notif = document.createElement("div");
-  notif.className = "notificacion-exito"; // Asegúrate de tener este CSS
-  notif.textContent = msg;
-  document.body.appendChild(notif);
+function mostrarNotificacion(msg, tipo = 'exito') {
+    const notif = document.createElement("div");
+    notif.className = `notificacion-${tipo}`; // exito o error
+    notif.textContent = msg;
+    document.body.appendChild(notif);
 
-  setTimeout(() => {
-    notif.style.opacity = 1;
-  }, 50);
+    setTimeout(() => {
+        notif.style.opacity = 1;
+    }, 50);
 
-  setTimeout(() => notif.remove(), 2500);
+    setTimeout(() => notif.remove(), 2500);
 }
 
 window.mostrarNotificacion = mostrarNotificacion;
 
 /* Registra un nuevo peso ingresado por el usuario. */
+async function registrarPeso(event) {
+    // Prevenir el comportamiento por defecto del formulario
+    if (event) {
+        event.preventDefault();
+    }
+    
+    const pesoInput = document.getElementById("peso-actual");
+    // Si el campo está vacío, mostrar mensaje
+    if (!pesoInput.value.trim()) {
+        mostrarNotificacion("Por favor ingresa un peso", "error");
+        return;
+    }
 
-function registrarPeso() {
-  const pesoInput = document.getElementById("peso-actual");
-  const peso = parseFloat(pesoInput.value);
+    const peso = parseFloat(pesoInput.value);
+    if (peso <= 0) {
+        mostrarNotificacion("El peso debe ser mayor a 0", "error");
+        return;
+    }
 
-  if (!peso || peso <= 0) {
-    mostrarNotificacion("Por favor ingresa un peso válido", "error");
-    return;
-  }
+    try {
+        // Obtener el token CSRF del formulario
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        
+        const response = await fetch('/registro_peso/guardar/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ peso: peso })
+        });
 
-  // Obtener registros existentes
-  const registrosPeso = JSON.parse(localStorage.getItem("registrosPeso")) || [];
-
-  // Crear nuevo registro
-  const nuevoRegistro = {
-    id: Date.now(),
-    fecha: new Date().toISOString(), // Formato ISO para fácil ordenamiento
-    peso: peso,
-    fechaFormateada: new Date().toLocaleDateString("es-ES"),
-  };
-
-  // Agregar al array y guardar
-  registrosPeso.push(nuevoRegistro);
-  localStorage.setItem("registrosPeso", JSON.stringify(registrosPeso));
-
-  // Actualizar interfaz
-  actualizarTablaPeso();
-  actualizarEstadisticas();
-
-  // Limpiar input
-  pesoInput.value = "";
-
-  // Mostrar mensaje de éxito
-  mostrarNotificacion("Peso registrado exitosamente");
+        // Verificar si la respuesta es JSON antes de intentar parsearla
+        const contentType = response.headers.get("content-type");
+        let data;
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || 'Error al guardar el peso');
+            }
+            // Limpiar el input después de un registro exitoso
+            pesoInput.value = "";
+            // Actualizar la tabla
+            await actualizarTablaPeso();
+            mostrarNotificacion("Peso registrado exitosamente");
+        } else {
+            throw new Error('Error en el servidor');
+        }
+    } catch (error) {
+        mostrarNotificacion(error.message, "error");
+        console.error('Error:', error);
+    }
 }
 
 window.registrarPeso = registrarPeso;
 
 /**
- * Cambia el filtro de registros y actualiza la tabla./
- * @param {string} filtro - El tipo de filtro a aplicar ('todos', 'ultimo-mes', 'ultimos-3-meses').
+ * Cambia el filtro de registros y actualiza la tabla.
+ * @param {string} filtro - El tipo de filtro a aplicar ('todos', 'ultimo_mes', '3_meses').
  */
+async function filtrarRegistros(filtro, event) {
+    filtroActual = filtro;
 
-function filtrarRegistros(filtro, event) {
-  filtroActual = filtro;
+    // Actualizar botones activos
+    document
+        .querySelectorAll(".btn-filtro")
+        .forEach((btn) => btn.classList.remove("active"));
 
-  // Actualizar botones activos
-  document
-    .querySelectorAll(".btn-filtro")
-    .forEach((btn) => btn.classList.remove("active"));
+    if (event && event.target) {
+        event.target.classList.add("active");
+    }
 
-  if (event && event.target) {
-    event.target.classList.add("active");
-  }
-
-  // Actualizar tabla
-  actualizarTablaPeso();
+    // Actualizar tabla
+    await actualizarTablaPeso();
 }
+
 window.filtrarRegistros = filtrarRegistros;
 
 /**
  * Elimina un registro por su ID.
- * @param {number} id - */
-function eliminarRegistro(id) {
-  if (confirm("¿Estás seguro de que quieres eliminar este registro?")) {
-    let registrosPeso = JSON.parse(localStorage.getItem("registrosPeso")) || [];
-    // Filtramos para crear un nuevo array sin el registro con el ID dado
-    registrosPeso = registrosPeso.filter((r) => r.id !== id);
-    localStorage.setItem("registrosPeso", JSON.stringify(registrosPeso));
+ * @param {number} id - ID del registro a eliminar
+ */
+async function eliminarRegistro(id) {
+    if (!confirm("¿Estás seguro de que quieres eliminar este registro?")) {
+        return;
+    }
 
-    actualizarTablaPeso();
-    actualizarEstadisticas();
-    mostrarNotificacion("Registro eliminado");
-  }
+    try {
+        const response = await fetch(`/registro_peso/eliminar/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Error al eliminar el registro');
+        }
+
+        await actualizarTablaPeso();
+        mostrarNotificacion("Registro eliminado exitosamente");
+    } catch (error) {
+        mostrarNotificacion(error.message, "error");
+    }
 }
+
 window.eliminarRegistro = eliminarRegistro;
+
+// Función para obtener el token CSRF
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 // 3. FUNCIONES INTERNAS (Auxiliares)
 
 /**
- * Filtra los registros según el período de tiempo seleccionado.
- * @param {Array} registros
- * @returns {Array} - */
+ * Actualiza la tabla de historial de peso en la interfaz.
+ * Obtiene los datos del backend y actualiza la UI.
+ */
+// Función para actualizar solo la tabla sin tocar el formulario
+async function actualizarTablaPeso() {
+    const tbody = document.getElementById("peso-comparison-body");
+    if (!tbody) return;
 
-function filtrarPorFecha(registros) {
-  const ahora = new Date();
+    try {
+        const response = await fetch(`/registro_peso/obtener/?filtro=${filtroActual}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'same-origin'
+        });
 
-  switch (filtroActual) {
-    case "ultimo-mes":
-      // Calcula la fecha de hace un mes
-      const unMesAtras = new Date(
-        ahora.getFullYear(),
-        ahora.getMonth() - 1,
-        ahora.getDate()
-      );
-      return registros.filter((r) => new Date(r.fecha) >= unMesAtras);
+        if (!response.ok) {
+            throw new Error('Error al obtener los registros');
+        }
 
-    case "ultimos-3-meses":
-      // Calcula la fecha de hace tres meses
-      const tresMesesAtras = new Date(
-        ahora.getFullYear(),
-        ahora.getMonth() - 3,
-        ahora.getDate()
-      );
-      return registros.filter((r) => new Date(r.fecha) >= tresMesesAtras);
+        let data;
+        const text = await response.text();
+        try {
+            data = JSON.parse(text);
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            console.error('Response text:', text);
+            throw new Error('La respuesta del servidor no es JSON válido');
+        }
 
-    default:
-      // 'todos' o cualquier otro valor
-      return registros;
-  }
+        // Actualizar estadísticas
+        actualizarEstadisticas(data.estadisticas);
+        
+        // Limpiar y actualizar la tabla
+        tbody.innerHTML = "";
+
+        if (data.registros.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4">No hay registros de peso</td></tr>';
+            return;
+        }
+
+        // Renderizar registros
+        data.registros.forEach(registro => {
+            const cambioClase = registro.cambio > 0 ? "positive" : 
+                               registro.cambio < 0 ? "negative" : "neutral";
+            const cambioTexto = registro.cambio === 0 ? "0.0" : 
+                               registro.cambio > 0 ? `+${registro.cambio.toFixed(1)}` : 
+                               registro.cambio.toFixed(1);
+
+            const fila = `
+                <tr>
+                    <td>${registro.fecha}</td>
+                    <td>${registro.peso.toFixed(1)} kg</td>
+                    <td class="peso-change ${cambioClase}">${cambioTexto} kg</td>
+                    <td>
+                        <button class="btn-eliminar" type="button" onclick="eliminarRegistro(${registro.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+
+            tbody.insertAdjacentHTML("beforeend", fila);
+        });
+
+
+    } catch (error) {
+        mostrarNotificacion(error.message, "error");
+        tbody.innerHTML = '<tr><td colspan="4">Error al cargar los registros</td></tr>';
+    }
 }
 
-/* Actualiza la tabla de historial de peso en la interfaz.*/
-function actualizarTablaPeso() {
-  const registrosPeso = JSON.parse(localStorage.getItem("registrosPeso")) || [];
-  const tbody = document.getElementById("peso-comparison-body");
+/**
+ * Actualiza las estadísticas en la interfaz.
+ * @param {Object} estadisticas - Objeto con las estadísticas del backend
+ */
+function actualizarEstadisticas(estadisticas) {
+    const ultimoPesoElement = document.getElementById("ultimo-peso");
+    const cambioRecienteElement = document.getElementById("cambio-reciente");
+    const totalRegistrosElement = document.getElementById("total-registros");
 
-  if (!tbody) return; // Salir si el elemento no existe
+    if (!ultimoPesoElement || !cambioRecienteElement || !totalRegistrosElement) return;
 
-  tbody.innerHTML = "";
+    if (estadisticas.total_registros === 0) {
+        ultimoPesoElement.textContent = "-- kg";
+        cambioRecienteElement.textContent = "-- kg";
+        totalRegistrosElement.textContent = "0";
+        cambioRecienteElement.className = "";
+        return;
+    }
 
-  // 1. Filtrar registros
-  let registrosFiltrados = filtrarPorFecha(registrosPeso);
+    // Actualizar valores
+    ultimoPesoElement.textContent = `${estadisticas.ultimo_peso.toFixed(1)} kg`;
+    totalRegistrosElement.textContent = estadisticas.total_registros;
 
-  // 2. Ordenar por fecha (más recientes primero) para la visualización de la tabla
-  registrosFiltrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
-  if (registrosFiltrados.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4">No hay registros de peso</td></tr>';
-    return;
-  }
-
-  // 3. Iterar y renderizar
-  registrosFiltrados.forEach((registro, index) => {
-    // Necesitamos encontrar el registro cronológicamente anterior a este registro *filtrado*.
-    // Para calcular el cambio, debemos usar el registro siguiente en el array *ordenado inversamente*.
-    const registroAnteriorOrdenado = registrosFiltrados[index + 1];
-
-    const pesoAnterior = registroAnteriorOrdenado
-      ? registroAnteriorOrdenado.peso
-      : null;
-    const cambio = pesoAnterior !== null ? registro.peso - pesoAnterior : 0;
-
-    const cambioClase =
-      cambio > 0 ? "positive" : cambio < 0 ? "negative" : "neutral";
-    const cambioTexto =
-      cambio === 0
-        ? "0.0"
-        : cambio > 0
-        ? `+${cambio.toFixed(1)}`
-        : cambio.toFixed(1);
-
-    const pesoAnteriorTexto = pesoAnterior
-      ? pesoAnterior.toFixed(1) + " kg"
-      : "--"; // Para visualización
-
-    const fila = `
-            <tr>
-                <td>${registro.fechaFormateada}</td>
-                <td>${registro.peso.toFixed(1)} kg</td>
-                <td class="peso-change ${cambioClase}">${cambioTexto} kg</td>
-                <td>
-                    <button class="btn-eliminar" onclick="eliminarRegistro(${
-                      registro.id
-                    })">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        `;
-
-    tbody.insertAdjacentHTML("beforeend", fila);
-  });
-}
-
-/* Calcula y actualiza las estadísticas clave (último peso, cambio reciente, total). */
-function actualizarEstadisticas() {
-  const registrosPeso = JSON.parse(localStorage.getItem("registrosPeso")) || [];
-
-  const ultimoPesoElement = document.getElementById("ultimo-peso");
-  const cambioRecienteElement = document.getElementById("cambio-reciente");
-  const totalRegistrosElement = document.getElementById("total-registros");
-
-  // Manejo de elementos nulos por si no existen en el HTML de la página actual
-  if (!ultimoPesoElement || !cambioRecienteElement || !totalRegistrosElement)
-    return;
-
-  if (registrosPeso.length === 0) {
-    ultimoPesoElement.textContent = "-- kg";
-    cambioRecienteElement.textContent = "-- kg";
-    totalRegistrosElement.textContent = "0";
-    cambioRecienteElement.className = "";
-    return;
-  }
-
-  // Ordenar por fecha (más recientes primero)
-  const registrosOrdenados = registrosPeso.sort(
-    (a, b) => new Date(b.fecha) - new Date(a.fecha)
-  );
-
-  // Último peso
-  const ultimoPeso = registrosOrdenados[0].peso;
-  ultimoPesoElement.textContent = `${ultimoPeso.toFixed(1)} kg`;
-
-  // Cambio reciente (entre el último y el penúltimo)
-  if (registrosOrdenados.length > 1) {
-    const cambio = ultimoPeso - registrosOrdenados[1].peso;
-    const cambioTexto =
-      cambio > 0 ? `+${cambio.toFixed(1)}` : cambio.toFixed(1);
-
+    // Actualizar cambio reciente
+    const cambioTexto = estadisticas.cambio_reciente === 0 ? "0.0" :
+                        estadisticas.cambio_reciente > 0 ? `+${estadisticas.cambio_reciente.toFixed(1)}` :
+                        estadisticas.cambio_reciente.toFixed(1);
+    
     cambioRecienteElement.textContent = `${cambioTexto} kg`;
-    // Aplicar clases CSS para color
-    cambioRecienteElement.className =
-      cambio > 0 ? "positive" : cambio < 0 ? "negative" : "neutral";
-  } else {
-    cambioRecienteElement.textContent = "-- kg";
-    cambioRecienteElement.className = "";
-  }
-
-  // Total registros
-  totalRegistrosElement.textContent = registrosPeso.length;
+    cambioRecienteElement.className = estadisticas.cambio_reciente > 0 ? "positive" :
+                                      estadisticas.cambio_reciente < 0 ? "negative" :
+                                      "neutral";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // ----------------------------------------------------
-  // LÓGICA DE PRUEBA:
-  // Si no hay datos, carga los datos de prueba.
-  // Una vez que uses el botón "Registrar Peso" real,
-  // este código dejará de ejecutarse hasta que borres el localStorage.
-  // ----------------------------------------------------
-  const registrosExistentes = localStorage.getItem("registrosPeso");
-  if (!registrosExistentes || JSON.parse(registrosExistentes).length === 0) {
-    console.log("Cargando datos de prueba...");
-    crearDatosDePrueba();
-  }
-  // ----------------------------------------------------
+document.addEventListener("DOMContentLoaded", async function () {
+    // Inicializar la tabla al cargar la página
+    await actualizarTablaPeso();
 
-  // Inicializar la tabla y las estadísticas al cargar la página
-  actualizarTablaPeso();
-  actualizarEstadisticas();
-
-  // Asegurar que el botón "Todos" esté activo al inicio (si existe)
-  const btnTodos = document.querySelector('.btn-filtro[onclick*="todos"]');
-  if (btnTodos) {
-    btnTodos.classList.add("active");
-  }
+    // Asegurar que el botón "Todos" esté activo al inicio
+    const btnTodos = document.querySelector('.btn-filtro[onclick*="todos"]');
+    if (btnTodos) {
+        btnTodos.classList.add("active");
+    }
 });
-
-function crearDatosDePrueba() {
-  const ahora = new Date();
-
-  // Función auxiliar para obtener fechas y formatearlas
-  const obtenerRegistroDePrueba = (mesesAtras, peso) => {
-    const fecha = new Date(
-      ahora.getFullYear(),
-      ahora.getMonth() - mesesAtras,
-      ahora.getDate()
-    );
-    return {
-      // Usamos un ID basado en la fecha + un número random para asegurar que sea único
-      id: fecha.getTime() + Math.floor(Math.random() * 1000),
-      fecha: fecha.toISOString(),
-      peso: peso,
-      fechaFormateada: fecha.toLocaleDateString("es-ES"),
-    };
-  };
-
-  const registrosDePrueba = [
-    // 1. Registro MUY antiguo (para asegurar que queda fuera de 3 meses)
-    obtenerRegistroDePrueba(5, 75.0),
-
-    // 2. Registro que queda FUERA del último mes, pero DENTRO de 3 meses (ej: hace 2 meses)
-    obtenerRegistroDePrueba(2, 78.5),
-
-    // 3. Registro que queda DENTRO del último mes (ej: hace 15 días)
-    obtenerRegistroDePrueba(0, 80.2),
-
-    // 4. Registro de HOY (el más reciente)
-    obtenerRegistroDePrueba(0, 81.0),
-
-    // 5. Registro al límite de 3 meses (ej: hace 89 días)
-    obtenerRegistroDePrueba(2.9, 77.0),
-  ];
-
-  // NOTA: Sobreescribimos cualquier dato existente para que la prueba sea consistente.
-  localStorage.setItem("registrosPeso", JSON.stringify(registrosDePrueba));
-}
