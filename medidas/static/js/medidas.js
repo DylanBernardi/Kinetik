@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para obtener el CSRF token de Django
   function getCookie(name) {
-    // ... (Tu función getCookie aquí) ...
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
       const cookies = document.cookie.split(";");
@@ -39,28 +38,23 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(async (response) => {
           const data = await response.json();
           if (!response.ok) {
-            // Si el estado es 400 (validación fallida) o 500 (error interno)
             throw new Error(JSON.stringify(data));
           }
           return data;
         })
         .then((data) => {
-          // ÉXITO
           actualizarTablaComparacion(data.data);
-          medidasForm.reset(); // Limpiar el formulario
+          medidasForm.reset(); 
         })
         .catch((errorJson) => {
-          // FALLO
           const data = JSON.parse(errorJson.message);
 
           if (data.status === "error" && data.errors) {
-            // Muestra los errores de campo devueltos por la vista de Django
             Object.keys(data.errors).forEach((fieldName) => {
               const inputElement = document.getElementById(fieldName);
               if (inputElement) {
                 const errorMessage = document.createElement("p");
                 errorMessage.className = "error-message";
-                // Django devuelve una lista de errores; tomamos el primero
                 errorMessage.textContent = data.errors[fieldName];
                 inputElement.parentNode.appendChild(errorMessage);
               }
@@ -76,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Función para actualizar la tabla (Similar a tu lógica JS original)
   function actualizarTablaComparacion(medidas) {
     if (!comparacionContenido) return;
 

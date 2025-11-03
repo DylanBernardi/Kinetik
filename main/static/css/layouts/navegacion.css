@@ -71,6 +71,15 @@
   background-color: var(--color-secondary);
 }
 
+
+.saludo{
+  color: white;
+  font-size: 1.2rem;
+  align-self: center;
+}
+
+
+
 /* DROPDOWN MENU (Desktop) */
 .dropdown {
   position: relative;
@@ -137,6 +146,7 @@
 /* REGLAS RESPONSIVE (MÓVILES: <= 768px)              */
 
 @media (max-width: 768px) {
+
   /* --- Visibilidad y Controles --- */
   .menu-toggle {
     display: block;
@@ -268,4 +278,12 @@
     /* Si reaparece el espacio, cambia a margin-top: -1px !important; */
     margin-top: 0 !important;
   }
+}
+
+@media (min-width: 600px) {
+  
+  .saludo{
+  font-size: 1.6rem;
+}
+
 }

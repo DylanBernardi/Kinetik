@@ -24,26 +24,16 @@ def mis_rutinas(request):
 
 
 def mostrar_rutina(request, rutina_id):
-    # Obtener la rutina, si no existe devuelve 404
     rutina = get_object_or_404(Rutina, id=rutina_id)
 
-    # Opcional: Control de permisos (solo si quieres que sea privada)
-    # if rutina.usuario != request.user:
-    #     messages.error(request, "No tienes permiso para ver esta rutina.")
-    #     return redirect('mis_rutinas')
-
-    # 1. Obtener todos los detalles de la rutina, ordenados por día y orden
-    # Usamos select_related para traer la info del ejercicio y detalle en una sola consulta
     detalles_rutina = (
         RutinaDia.objects.filter(rutina=rutina)
         .select_related(
-            "detalle_ejercicio__ejercicio"  # Asumiendo que DetalleEjercicio tiene una FK a Ejercicio
+            "detalle_ejercicio__ejercicio" 
         )
         .order_by("dia_semana", "orden")
     )
 
-    # 2. Estructura para agrupar los ejercicios por día
-    # Usaremos defaultdict para inicializar una lista vacía para cada día
     rutina_agrupada = defaultdict(list)
 
     for rutina_dia in detalles_rutina:
@@ -51,7 +41,6 @@ def mostrar_rutina(request, rutina_id):
         detalle = rutina_dia.detalle_ejercicio
         ejercicio = detalle.ejercicio
 
-        # Agregamos un diccionario con la información relevante para la plantilla
         rutina_agrupada[dia_semana_num].append(
             {
                 "nombre_ejercicio": ejercicio.nombre,
@@ -206,12 +195,130 @@ def eliminar_rutina(request, rutina_id):
 
 
 def editar_rutina(request, rutina_id):
-    return render(request, "entrenamientos_casa.html")
 
+    rutina = get_object_or_404(Rutina, id=rutina_id, usuario=request.user)
+
+    # Obtener todos los ejercicios disponibles para el dropdown
+    ejercicios_disponibles = Ejercicios.objects.all().order_by("nombre")
+    
+    # Días de la semana, necesarios para iterar la estructura del formulario
+    dias_semana_list = DIAS_SEMANA
+
+    # 2. Manejo de Petición POST (Guardar cambios)
+    if request.method == "POST":
+        nombre_rutina = request.POST.get("nombre_rutina")
+
+        if not nombre_rutina:
+            messages.error(request, "El nombre de la rutina es obligatorio.")
+            return redirect("editar_rutina", rutina_id=rutina.id)
+
+        # Actualizar el nombre
+        rutina.nombre = nombre_rutina
+        rutina.save()
+
+        # Eliminar registros antiguos antes de guardar los nuevos
+        RutinaDia.objects.filter(rutina=rutina).delete()
+
+        # Iterar sobre los días de la semana y guardar los ejercicios
+        for num_dia, _ in dias_semana_list:
+            # Obtener todas las listas de ejercicios para este día (puede haber varias)
+            ejercicios_del_dia = request.POST.getlist(f"dia_{num_dia}_ejercicio[]")
+            series_del_dia = request.POST.getlist(f"dia_{num_dia}_series[]")
+            repeticiones_del_dia = request.POST.getlist(f"dia_{num_dia}_repeticiones[]")
+            pesos_del_dia = request.POST.getlist(f"dia_{num_dia}_peso[]")
+            descansos_del_dia = request.POST.getlist(f"dia_{num_dia}_descanso[]")
+
+            # Recorrer las listas paralelas para crear/guardar cada DetalleEjercicio
+            for i, ejercicio_id in enumerate(ejercicios_del_dia):
+                if not ejercicio_id:
+                    continue  # Saltar si el ejercicio no fue seleccionado
+
+                try:
+                    detalle = DetalleEjercicio.objects.create(
+                        ejercicio_id=ejercicio_id,
+                        series=series_del_dia[i] if series_del_dia[i] else 0,
+                        repeticiones=(
+                            repeticiones_del_dia[i] if repeticiones_del_dia[i] else 0
+                        ),
+                        peso=pesos_del_dia[i] if pesos_del_dia[i] else 0,
+                        descanso=descansos_del_dia[i] if descansos_del_dia[i] else 0,
+                    )
+
+                    # Crear el enlace RutinaDia
+                    RutinaDia.objects.create(
+                        rutina=rutina,
+                        dia_semana=num_dia,
+                        orden=i + 1,  # El orden en el formulario es i+1
+                        detalle_ejercicio=detalle,
+                    )
+                except IndexError:
+                    # Manejar el caso donde las listas no tienen la misma longitud
+                    messages.error(
+                        request,
+                        f"Error de datos al guardar la rutina en el día {num_dia}.",
+                    )
+                    break
+                except Exception as e:
+                    messages.error(request, f"Error al guardar los detalles: {e}")
+
+        return redirect(
+            "mostrar_rutina", rutina_id=rutina.id
+        )  
+
+
+    detalles_rutina = (
+        RutinaDia.objects.filter(rutina=rutina)
+        .select_related("detalle_ejercicio__ejercicio")
+        .order_by("dia_semana", "orden")
+    )
+
+    # Estructura para agrupar los datos actuales: {dia: [detalle1, detalle2, ...]}
+    rutina_actual = defaultdict(list)
+    for rd in detalles_rutina:
+        rutina_actual[rd.dia_semana].append(
+            {
+                "rutina_dia_id": rd.id,
+                "ejercicio_id": rd.detalle_ejercicio.ejercicio_id,
+                "nombre_ejercicio": rd.detalle_ejercicio.ejercicio.nombre,
+                "series": rd.detalle_ejercicio.series,
+                "repeticiones": rd.detalle_ejercicio.repeticiones,
+                "peso": rd.detalle_ejercicio.peso,
+                "descanso": rd.detalle_ejercicio.descanso,
+                "orden": rd.orden,
+            }
+        )
+
+    contexto = {
+        "rutina": rutina,
+        "rutina_actual": dict(rutina_actual),
+        "ejercicios_disponibles": ejercicios_disponibles,
+        "dias_semana": dias_semana_list,
+    }
+    return render(request, "editar_rutina.html", contexto)
+
+
+def toggle_rutina_activa(request, rutina_id):
+
+    rutina_seleccionada = get_object_or_404(Rutina, id=rutina_id, usuario=request.user)
+
+    nuevo_estado = not rutina_seleccionada.activo
+
+    if nuevo_estado:
+
+        Rutina.objects.filter(usuario=request.user, activo=True).update(activo=False)
+
+        rutina_seleccionada.activo = True
+        rutina_seleccionada.save()
+
+    else:
+        rutina_seleccionada.activo = False
+        rutina_seleccionada.save()
+
+        messages.info(request, f"Rutina '{rutina_seleccionada.nombre}' desactivada.")
+    return redirect("mis_rutinas")
 
 def entrenamientos_casa(request):
     return render(request, "entrenamientos_casa.html")
-
 
 def entrenamientos_gimnasio(request):
     return render(request, "entrenamientos_gimnasio.html")

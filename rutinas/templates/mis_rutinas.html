@@ -1,70 +1,82 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mis Rutinas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="icon"
-      type="icon"
-      href="{% static 'imagenes/logo.png' %}"
-      class="icon"
-    />
-    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/mis_rutinas.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
-  {% include "layouts/navegacion.html" %}
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis rutinas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="icon"
+    type="icon"
+    href="{% static 'imagenes/logo.png' %}"
+    class="icon"
+  />
+  <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/mis_rutinas.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+</head>
+{% include "layouts/navegacion.html" %}
+<body>
     <div class="main">
-    <h1 class="titulo">🏋️ {{ titulo }}</h1>
+      <h1 class="titulo">🏋️ {{ titulo }}</h1>
 
-    {% if rutinas %}
-    <ul class="lista">
-      {% for rutina in rutinas %}
-      <li>
-        <strong class="nombre">{{ rutina.nombre }}</strong>
+      {% if rutinas %}
+      <ul class="lista">
+        {% for rutina in rutinas %}
+        <li>
+          <div class="nombre-y-activo">
+            <strong class="nombre">{{ rutina.nombre }}</strong>
 
-        <div class="opciones">
-          <a href="{% url 'mostrar_rutina' rutina_id=rutina.id %}">
-            <button type="button" class="boton-rutina">Ver rutina 🔎</button>
-          </a>
+            <form
+              action="{% url 'toggle_rutina_activa' rutina_id=rutina.id %}"
+              method="post"
+              class="form-activo"
+            >
+              {% csrf_token %}
+              <label class="switch" title="Activar/Desactivar rutina">
+                <input type="checkbox" name="activo" value="True" {% if rutina.activo %}
+                checked {% endif %} onchange="this.form.submit()" >
+                <span class="slider round"></span>
+              </label>
+            </form>
+          </div>
 
-          <a href="{% url 'editar_rutina' rutina_id=rutina.id %}">
-            <button type="button" class="boton-rutina">Editar ✏️</button>
-          </a>
+          <div class="opciones">
+            <a href="{% url 'mostrar_rutina' rutina_id=rutina.id %}">
+              <button type="button" class="boton-rutina">Ver rutina 🔎</button>
+            </a>
 
-          {# FORMULARIO DE ELIMINACIÓN (POST) #}
-          <form
-            method="post"
-            action="{% url 'eliminar_rutina' rutina_id=rutina.id %}"
-            onsubmit="return confirm('¿Estás seguro de que quieres eliminar la rutina «{{ rutina.nombre }}»?');"
-          >
-            {% csrf_token %}
-            <button type="submit" class="boton-rutina eliminar">
-              Eliminar 🗑️
-            </button>
-          </form>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>Aún no tienes ninguna rutina creada. ¡Es hora de empezar!</p>
-    {% endif %}
+            <a href="{% url 'editar_rutina' rutina_id=rutina.id %}">
+              <button type="button" class="boton-rutina">Editar ✏️</button>
+            </a>
+
+            <form
+              method="post"
+              action="{% url 'eliminar_rutina' rutina_id=rutina.id %}"
+              onsubmit="return confirm('¿Estás seguro de que quieres eliminar la rutina «{{ rutina.nombre }}»?');"
+            >
+              {% csrf_token %}
+              <button type="submit" class="boton-rutina eliminar">
+                Eliminar 🗑️
+              </button>
+            </form>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Aún no tienes ninguna rutina creada. ¡Es hora de empezar!</p>
+      {% endif %}
+    </div>
+    {% include "layouts/footer.html" %}
   </body>
-  </div>
-  {% include "layouts/footer.html" %}
 </html>

@@ -68,3 +68,11 @@ form {
     width: 15rem;
   }
 }
+
+.titulo{
+  margin-top: 1rem;
+}
+
+#nombre_rutina {
+  max-width: 100vw;
+}

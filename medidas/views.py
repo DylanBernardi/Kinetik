@@ -46,9 +46,7 @@ def registro_medidas_ajax(request):
             for field in ultima_medicion._meta.fields:
                 valor = getattr(ultima_medicion, field.name)
                 if valor is not None and field.get_internal_type() == "DecimalField":
-                    # Convertimos a string con formato de punto decimal y una precisión
                     medidas_formato_html[field.name] = "{:.1f}".format(valor)
-                # Si el campo no es Decimal o es None, lo ignoramos o lo dejamos como None
 
         else:
             medidas_formato_html = None
@@ -69,10 +67,8 @@ def registro_medidas_ajax(request):
 
             if raw_value and raw_value.strip():
                 try:
-                    # Intenta convertir a Decimal (maneja la coma/punto decimal según el servidor)
                     decimal_value = Decimal(raw_value.replace(",", "."))
 
-                    # 1b. Validación de Rangos (ej. min/max del HTML)
                     if decimal_value < field["min"] or decimal_value > field["max"]:
                         validation_errors[field_name] = (
                             f"{field['label']} debe estar entre {field['min']} y {field['max']}."
@@ -82,7 +78,6 @@ def registro_medidas_ajax(request):
                     medida_data[field_name] = decimal_value
 
                 except InvalidOperation:
-                    # 1a. Validación de Tipo de Dato
                     validation_errors[field_name] = (
                         f"El valor de {field['label']} no es un número válido."
                     )
@@ -99,7 +94,7 @@ def registro_medidas_ajax(request):
                     "errors": validation_errors,
                 },
                 status=400,
-            )  # Devolver HTTP 400 (Bad Request)
+            )  
 
         # 3. Guardar la Nueva Medida y Preparar Respuesta
         try:

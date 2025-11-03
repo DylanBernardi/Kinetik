@@ -2,7 +2,6 @@
     display: none;
 }
 
-/* --- Filtros y Mensaje Inicial --- */
 
 .training-filters {
     display: flex;
@@ -13,21 +12,20 @@
 
 .training-filters select {
     padding: 0.75rem;
-    margin: 0.5rem; /* Ajuste: Mantenido para el margen interno */
+    margin: 0.5rem; 
     min-width: 200px;
 }
 
 .routine-message {
     text-align: center;
     padding: 2rem;
-    color: var(--color-text-light); /* Asumiendo que var(--color-text-light) es un color apropiado */
+    color: var(--color-text-light); 
     font-size: 1.1rem;
     padding: 0; 
     color: var(--color-text-light); 
     font-size: 1.1rem;
 }
 
-/* --- Contenedor Principal --- */
 
 .training-content-limited {
     padding: 2rem;
@@ -44,7 +42,6 @@
     padding: 1rem 0;
 }
 
-/* --- Estilos de Rutina (Día/Ejercicio) --- */
 
 .workout-card {
     background: var(--color-card);
@@ -103,7 +100,6 @@
     font-weight: 500;
 }
 
-/* --- Layout de Columnas Específicas para las Rutinas --- */
 
 .workouts-grid {
     display: grid;
@@ -112,7 +108,7 @@
     padding: 1rem;
 }
 
-.workout-columns { /* Contenedor de las grillas de días */
+.workout-columns { 
     margin: 1.5rem 0;
     width: 100%;
 }
@@ -155,7 +151,6 @@
     height: fit-content;
 }
 
-/* Responsive Design */
 @media (max-width: 767px) {
     .training-content-limited {
         padding: 1rem;
@@ -212,7 +207,6 @@
     }
 }
 
-/* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
     .training-content-limited {
         padding: 1.5rem;
@@ -245,7 +239,6 @@
     }
 }
 
-/* Desktop pequeño */
 @media (min-width: 1024px) and (max-width: 1279px) {
     .main-area {
         grid-template-columns: 1fr 400px;

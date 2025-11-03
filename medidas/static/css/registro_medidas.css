@@ -354,7 +354,6 @@
   margin-top: 10rem;
 }
 
-/* no se si sirve para algo */
 .registro-medidas-form {
   margin-top: 24px;
   display: flex;
@@ -421,15 +420,12 @@
   }
 }
 
-/* Responsive Design */
-/* Mobile First - Base styles for mobile */
 @media (max-width: 768px) {
   .body-measure-container {
     margin-top: 16px;
     gap: 16px;
   }
 
-  /* Ocultar solo la imagen en móviles */
   .body-figure-area img {
     display: none;
   }
@@ -440,7 +436,6 @@
     margin: 0;
   }
 
-  /* Reorganizar campos de medida para móvil */
   .measure-field {
     position: static;
     display: flex;
@@ -460,7 +455,6 @@
     top: auto !important;
   }
 
-  /* Eliminar las flechas en móvil */
   .measure-field::before,
   .measure-field::after {
     display: none !important;
@@ -485,7 +479,6 @@
     margin-left: 1rem;
   }
 
-  /* Reset específico para el campo de pecho en móvil */
   .field-pecho {
     position: static !important;
     left: auto !important;

@@ -1,0 +1,151 @@
+{% load static %} {% load custom_filters%}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar rutina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="icon"
+    type="icon"
+    href="{% static 'imagenes/logo.png' %}"
+    class="icon"
+  />
+  <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/crear_rutinas.css' %}" />
+
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+</head>
+{% include "layouts/navegacion.html" %}
+<body>
+<body>
+
+    <div class="main">
+    
+    <h1>✏️ Editar Rutina: {{ rutina.nombre }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+      <h2>1. Nombre de la Rutina</h2>
+
+        <input placeholder="Nombre" type="text" id="nombre_rutina" name="nombre_rutina" value="{{ rutina.nombre }}" required>
+                
+        <h2 class="titulo">2. Asignación de Ejercicios por Día</h2>
+
+            {% for num_dia, nombre_dia in dias_semana %}
+                <div class="dia-semana" data-dia="{{ num_dia }}">
+                    <h3>📅 {{ nombre_dia }}</h3>
+                    
+                    <table id="tabla-dia-{{ num_dia }}" class="tabla-ejercicios tabla">
+                        <thead class="hidden">
+                            <tr>
+                                <th>Ejercicio</th>
+                                <th>Series</th>
+                                <th>Repeticiones</th>
+                                <th>Peso (kg)</th>
+                                <th>Descanso (s)</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ejercicios-dia-{{ num_dia }}">
+                            
+                      
+                            {% with ejercicios_del_dia=rutina_actual|get_item:num_dia %}
+                                {% if ejercicios_del_dia %}
+                                    {% for data in ejercicios_del_dia %}
+                                        <tr data-orden="{{ forloop.counter }}">                                            
+                                            <td>
+                                                <select name="dia_{{ num_dia }}_ejercicio[]" required>
+                                                    <option value="">--- Seleccionar Ejercicio ---</option>
+                                                    
+                                                    {% for ejercicio in ejercicios_disponibles %}
+                                                       
+                                                        <option 
+                                                            value="{{ ejercicio.id }}" 
+                                                            {% if data.ejercicio_id|safe == ejercicio.id|safe %}selected{% endif %}>
+                                                            {{ ejercicio.nombre }}
+                                                        </option>
+                                                        
+                                                    {% endfor %}
+                                                </select>
+                                            </td>
+                                            
+                                            {# Input de Series #}
+                                            <td><input placeholder="Series" type="number" name="dia_{{ num_dia }}_series[]" value="{{ data.series|default:'0' }}" min="0"></td>
+                                            {# Input de Repeticiones #}
+                                            <td><input placeholder="Repeticiones" type="number" name="dia_{{ num_dia }}_repeticiones[]" value="{{ data.repeticiones|default:'0' }}" min="0"></td>
+                                            <td>
+                                            <input placeholder="Peso"
+                                                    type="number" 
+                                                    name="dia_{{ num_dia }}_peso[]" 
+                                                    value="{{ data.peso|floatformat:'-2'|default:'0' }}" 
+                                                    step="0.5" 
+                                                    min="0"
+                                                >
+                                            </td>
+                                            <td><input placeholder="Descanso" type="number" name="dia_{{ num_dia }}_descanso[]" value="{{ data.descanso|default:'0' }}" min="0"></td>
+                                            
+                                            <td>
+                                                <button type="button" class="btn-eliminar">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                            
+                        </tbody>
+                    </table>
+                    <button
+          type="button"
+          class="btn-add-ejercicio"
+          data-dia-num="{{ num_dia }}"
+        >
+          Añadir Ejercicio
+        </button>
+                </div>
+            {% endfor %}
+        
+        <button class="submit" type="submit" >Guardar Cambios</button>
+    </form>
+    
+    <template id="ejercicio-template">
+        <tr data-orden="X_ORDEN_X">
+            
+            <td>
+                <select name="dia_X_DIA_X_ejercicio[]" required>
+                    <option value="">--- Seleccionar Ejercicio ---</option>
+                    
+                    {% for ejercicio in ejercicios_disponibles %}
+                        <option value="{{ ejercicio.id }}">{{ ejercicio.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td><input type="number" name="dia_X_DIA_X_series[]" value="0" min="0"></td>
+            <td><input type="number" name="dia_X_DIA_X_repeticiones[]" value="0" min="0"></td>
+            <td><input type="number" name="dia_X_DIA_X_peso[]" value="0" step="0.5" min="0"></td>
+            <td><input type="number" name="dia_X_DIA_X_descanso[]" value="0" min="0"></td>
+            <td><button type="button" class="eliminar-fila">Eliminar</button></td>
+        </tr>
+    </template>
+    
+   </div>
+<script src="{% static 'js/rutina.js' %}" defer></script>
+<script id="ejercicios-data" type="application/json">
+  [
+      {% for ejercicio in ejercicios_disponibles %}
+          {"id": "{{ ejercicio.id }}", "nombre": "{{ ejercicio.nombre }}"}{% if not forloop.last %},{% endif %}
+      {% endfor %}
+  ]
+</script>
+</div>
+{% include "layouts/footer.html" %}

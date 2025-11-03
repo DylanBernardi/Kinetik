@@ -12,4 +12,9 @@ urlpatterns = [
     ),
     path("crear_rutina/", views.crear_rutina, name="crear_rutina"),
     path("editar_rutina/<int:rutina_id>/", views.editar_rutina, name="editar_rutina"),
+    path(
+        "rutinas/toggle-activa/<int:rutina_id>/",
+        views.toggle_rutina_activa,
+        name="toggle_rutina_activa",
+    ),
 ]
