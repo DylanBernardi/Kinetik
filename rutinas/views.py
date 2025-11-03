@@ -23,8 +23,54 @@ def mis_rutinas(request):
     return render(request, "mis_rutinas.html", context)
 
 
-def mostrar_rutina_semanal(request, rutina_id):
-    return render(request, "mostrar_rutina_semanal.html")
+def mostrar_rutina(request, rutina_id):
+    # Obtener la rutina, si no existe devuelve 404
+    rutina = get_object_or_404(Rutina, id=rutina_id)
+
+    # Opcional: Control de permisos (solo si quieres que sea privada)
+    # if rutina.usuario != request.user:
+    #     messages.error(request, "No tienes permiso para ver esta rutina.")
+    #     return redirect('mis_rutinas')
+
+    # 1. Obtener todos los detalles de la rutina, ordenados por día y orden
+    # Usamos select_related para traer la info del ejercicio y detalle en una sola consulta
+    detalles_rutina = (
+        RutinaDia.objects.filter(rutina=rutina)
+        .select_related(
+            "detalle_ejercicio__ejercicio"  # Asumiendo que DetalleEjercicio tiene una FK a Ejercicio
+        )
+        .order_by("dia_semana", "orden")
+    )
+
+    # 2. Estructura para agrupar los ejercicios por día
+    # Usaremos defaultdict para inicializar una lista vacía para cada día
+    rutina_agrupada = defaultdict(list)
+
+    for rutina_dia in detalles_rutina:
+        dia_semana_num = rutina_dia.dia_semana
+        detalle = rutina_dia.detalle_ejercicio
+        ejercicio = detalle.ejercicio
+
+        # Agregamos un diccionario con la información relevante para la plantilla
+        rutina_agrupada[dia_semana_num].append(
+            {
+                "nombre_ejercicio": ejercicio.nombre,
+                "peso": detalle.peso,
+                "repeticiones": detalle.repeticiones,
+                "series": detalle.series,
+                "descanso": detalle.descanso,
+                "orden": rutina_dia.orden,
+            }
+        )
+
+    # 3. Preparar el contexto para la plantilla
+    contexto = {
+        "rutina": rutina,
+        "rutina_agrupada": dict(rutina_agrupada),  # Convertir a dict para el template
+        "dias_semana": DIAS_SEMANA,  # Necesario para los encabezados de la tabla (1=Lunes, 2=Martes, etc.)
+    }
+
+    return render(request, "mostrar_rutina.html", contexto)
 
 
 def crear_rutina(request):

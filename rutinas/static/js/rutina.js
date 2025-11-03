@@ -29,10 +29,10 @@ function agregarFila(diaNum) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
             <td>${selectHtml}</td>
-            <td><input type="number" step="0.5" min="0" name="dia_${diaNum}_peso[]"></td>
-            <td><input type="number" min="1" name="dia_${diaNum}_repeticiones[]" required></td>
-            <td><input type="number" min="1" name="dia_${diaNum}_series[]" required></td>
-            <td><input type="number" min="0" name="dia_${diaNum}_descanso[]" required></td>
+            <td><input placeholder="Peso" type="number" step="0.5" min="0" name="dia_${diaNum}_peso[]"></td>
+            <td><input placeholder="Repeticiones" type="number" min="1" name="dia_${diaNum}_repeticiones[]" required></td>
+            <td><input placeholder="Series" type="number" min="1" name="dia_${diaNum}_series[]" required></td>
+            <td><input placeholder="Minutos de descanso" type="number" min="0" name="dia_${diaNum}_descanso[]" required></td>
             <td><button type="button" class="btn-eliminar">Eliminar</button></td>
         `;
     nuevaFila = tr;

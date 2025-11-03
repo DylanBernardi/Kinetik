@@ -88,12 +88,17 @@ class Rutina(models.Model):
         verbose_name="Usuario",
     )
 
+    activo = models.BooleanField(
+        default=False,
+        help_text="Indica si esta es la rutina que el usuario está siguiendo actualmente.",
+    )
+
     class Meta:
         verbose_name = "Rutina"
         verbose_name_plural = "Rutinas"
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre} ({'Activa' if self.activo else 'Inactiva'})"
 
 
 from django.db import models

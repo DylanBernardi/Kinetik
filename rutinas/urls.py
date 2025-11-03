@@ -4,9 +4,7 @@ from rutinas import views
 
 urlpatterns = [
     path("mis_rutinas/", views.mis_rutinas, name="mis_rutinas"),
-    path(
-        "rutina/<int:rutina_id>/", views.mostrar_rutina_semanal, name="mostrar_rutina"
-    ),
+    path("rutina/<int:rutina_id>/", views.mostrar_rutina, name="mostrar_rutina"),
     path(
         "eliminar_rutina/<int:rutina_id>/",
         views.eliminar_rutina,

@@ -1,0 +1,82 @@
+{% load static %} {% load custom_filters %}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutina: {{ rutina.nombre }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="icon"
+    type="icon"
+    href="{% static 'imagenes/logo.png' %}"
+    class="icon"
+  />
+  <link rel="stylesheet" href="{% static 'css/base/normalize.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/ver_rutina.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+</head>
+{% include "layouts/navegacion.html" %}
+
+<div class="main-div">
+  <h1>🏋️ Rutina: {{ rutina.nombre }}</h1>
+  <p class="nombre">
+    Creada por: <strong>{{ rutina.usuario.username }}</strong>
+  </p>
+
+  {% if rutina.usuario == request.user %}
+  <a href="{% url 'editar_rutina' rutina_id=rutina.id %}"
+    ><button>Editar Rutina</button>
+  </a>
+</div>
+
+{% endif %}
+
+<hr />
+
+{% for num_dia, nombre_dia in dias_semana %}
+
+<div class="dia-semana">
+  <h2>📅 Día {{ num_dia }}: {{ nombre_dia }}</h2>
+
+  {% if rutina_agrupada|get_item:num_dia %}
+  <div class="tabla-rutina-responsive">
+    <table class="tabla-rutina">
+      <thead>
+        <tr>
+          <th>Orden</th>
+          <th>Ejercicio</th>
+          <th>Series</th>
+          <th>Reps</th>
+          <th>Peso (kg)</th>
+          <th>Descanso</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ej in rutina_agrupada|get_item:num_dia %}
+        <tr>
+          <td>{{ ej.orden }}</td>
+          <td><strong>{{ ej.nombre_ejercicio }}</strong></td>
+          <td>{{ ej.series }}</td>
+          <td>{{ ej.repeticiones }}</td>
+          <td>{{ ej.peso }} kg</td>
+          <td>{{ ej.descanso }} mins</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p>¡Día libre o no hay ejercicios asignados!</p>
+  {% endif %}
+</div>
+
+{% endfor %} {% include "layouts/footer.html" %}

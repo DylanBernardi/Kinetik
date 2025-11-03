@@ -12,11 +12,6 @@
   margin-top: 1rem;
 }
 
-#boton-rojo {
-  margin: 1rem 0;
-  background-color: red !important;
-}
-
 .dia-semana {
   display: flex;
   flex-direction: column;
@@ -37,7 +32,39 @@
   flex-direction: row;
 }
 
+.tabla tbody {
+  width: 80vw;
+}
 .btn-eliminar {
   background: red;
   margin: 1.5rem 0 1rem 0;
+}
+
+input,
+select {
+  width: 80vw;
+  height: 40px;
+}
+
+.submit {
+  margin: 2rem 0 1rem;
+  background: rgb(13, 179, 13);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+#nombre {
+  max-width: 100vw;
+}
+
+@media (min-width: 1024px) {
+  .btn-add-ejercicio {
+    width: 15rem;
+  }
+  .submit {
+    width: 15rem;
+  }
 }
