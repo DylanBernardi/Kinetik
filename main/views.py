@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 Usuario = get_user_model()
 
 
+@login_required(login_url="/login/")
 def inicio(request):
     return render(request, "inicio.html")
 

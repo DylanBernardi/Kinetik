@@ -25,97 +25,46 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
   </head>
-  <div class="container">
-    {% include "layouts/navegacion.html" %}
-    <main class="main-area">
-            <div class="main-content">
-                <h1>Mis Rutinas</h1>
-                <div class="my-routines-container hidden">
-                    
-                    
-                    <!-- Filtros y búsqueda -->
-                    <div class="routines-filters">
-                        <div class="search-box">
-                            <input type="text" id="searchRoutines" placeholder="Buscar rutinas...">
-                        </div>
-                        <div class="filter-options">
-                            <select id="filterByDays">
-                                <option value="">Todos los días</option>
-                                <option value="3">3 días</option>
-                                <option value="4">4 días</option>
-                                <option value="5">5 días</option>
-                                <option value="6">6 días</option>
-                            </select>
-                            <select id="filterByType">
-                                <option value="">Todos los tipos</option>
-                                <option value="push-pull-legs">Push/Pull/Legs</option>
-                                <option value="upper-lower">Upper/Lower</option>
-                                <option value="full-body">Full Body</option>
-                                <option value="custom">Personalizada</option>
-                            </select>
-                        </div>
-                    </div>
+  {% include "layouts/navegacion.html" %}
+  <body>
 
-                    <!-- Lista de rutinas -->
-                    <div class="routines-grid" id="routinesContainer">
-                        <!-- Las rutinas se cargarán aquí dinámicamente -->
-                    </div>
+    <div class="main">
+    <h1 class="titulo">🏋️ {{ titulo }}</h1>
 
-                    
-                </div>
-            </div>
-            <!-- Mensaje cuando no hay rutinas -->
-                    <div class="no-routines-message" id="noRoutinesMessage" >
-                        <i class="fas fa-folder-open"></i>
-                        <h3>No tienes rutinas guardadas</h3>
-                        <p>Crea tu primera rutina para comenzar tu entrenamiento</p>
-                        <a href="crear_rutinas.html" class="btn-create-first">
-                            <i class="fas fa-plus"></i> Crear mi primera rutina
-                        </a>
-                    </div>
+    {% if rutinas %}
+    <ul class="lista">
+      {% for rutina in rutinas %}
+      <li>
+        <strong class="nombre">{{ rutina.nombre }}</strong>
 
-            <!-- Sidebar -->
-            <aside class="sidebar hidden">
-                <div class="featured-section">
-                    <h2><i class="fas fa-star"></i> Estadísticas</h2>
-                    <div class="stats-card">
-                        <div class="stat-item">
-                            <span class="stat-number" id="totalRoutines">0</span>
-                            <span class="stat-label">Rutinas creadas</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="favoriteRoutines">0</span>
-                            <span class="stat-label">Rutinas favoritas</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="completedWorkouts">0</span>
-                            <span class="stat-label">Entrenamientos completados</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="opciones">
+          <a href="{% url 'mostrar_rutina' rutina_id=rutina.id %}">
+            <button type="button" class="boton-rutina">Ver rutina 🔎</button>
+          </a>
 
-                <div class="featured-section">
-                    <h2><i class="fas fa-clock"></i> Rutinas Recientes</h2>
-                    <div class="recent-routines" id="recentRoutines">
-                        <!-- Se cargarán las rutinas recientes -->
-                    </div>
-                </div>
+          <a href="{% url 'editar_rutina' rutina_id=rutina.id %}">
+            <button type="button" class="boton-rutina">Editar ✏️</button>
+          </a>
 
-                <div class="featured-section">
-                    <h2><i class="fas fa-lightbulb"></i> Consejos</h2>
-                    <div class="tips-container">
-                        <div class="tip-card">
-                            <i class="fas fa-info-circle"></i>
-                            <p>Organiza tus rutinas por objetivos para encontrarlas más fácil</p>
-                        </div>
-                        <div class="tip-card">
-                            <i class="fas fa-heart"></i>
-                            <p>Marca como favoritas las rutinas que más te gusten</p>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </main>
-        </div> {% include "layouts/footer.html" %}
-      </body>
+          {# FORMULARIO DE ELIMINACIÓN (POST) #}
+          <form
+            method="post"
+            action="{% url 'eliminar_rutina' rutina_id=rutina.id %}"
+            onsubmit="return confirm('¿Estás seguro de que quieres eliminar la rutina «{{ rutina.nombre }}»?');"
+          >
+            {% csrf_token %}
+            <button type="submit" class="boton-rutina eliminar">
+              Eliminar 🗑️
+            </button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Aún no tienes ninguna rutina creada. ¡Es hora de empezar!</p>
+    {% endif %}
+  </body>
+  </div>
+  {% include "layouts/footer.html" %}
 </html>

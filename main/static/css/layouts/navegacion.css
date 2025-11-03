@@ -233,8 +233,7 @@
     border-bottom: none !important; /* El dropdown NO debe tener borde inferior */
     margin: 0 !important;
     padding: 0 !important;
-    /* Truco para forzar el colapso de márgenes */
-    overflow: hidden !important;
+    overflow: auto;
     display: block;
   }
 
